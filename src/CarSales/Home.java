@@ -115,8 +115,8 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jPanel3.setBackground(new java.awt.Color(94, 237, 181));
-        jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
+        jPanel3.setBackground(new java.awt.Color(38, 40, 55));
+        jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(242, 109, 125), 1, true));
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
