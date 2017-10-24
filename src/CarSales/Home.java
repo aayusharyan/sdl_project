@@ -115,8 +115,9 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jPanel3.setBackground(new java.awt.Color(38, 40, 55));
+        jPanel3.setBackground(new java.awt.Color(94, 237, 181));
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
+        jPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
