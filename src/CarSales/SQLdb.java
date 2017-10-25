@@ -94,4 +94,29 @@ public class SQLdb {
         return return_str;
     }
     
+    public String fetchCars(int company_id,int offset,int limit) {
+        String return_str = "";
+        String rtrn[][] = new String[limit][4];
+        try {
+            // TODO add your handling code here:
+            Statement st;
+            st = con.createStatement();
+            int count = 0;
+            ResultSet re = st.executeQuery("SELECT * FROM cars WHERE `company_id`="+company_id+" OFFSET "+offset+" LIMIT"+limit);
+            while(re.next()){
+                rtrn[count][0] = re.getString("id");
+                rtrn[count][1] = re.getString("name");
+                rtrn[count][2] = re.getString("icon_url");
+                rtrn[count][3] = re.getString("company_name");
+                count++;
+            }
+            Gson gson = new Gson();
+            return_str = gson.toJson(rtrn);
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return return_str;
+    }
+    
 }
