@@ -30,7 +30,7 @@ public class CarList extends javax.swing.JFrame {
         cars_panel_2.setVisible(false);
         cars_panel_3.setVisible(false);
         cars_panel_4.setVisible(false);
-        cars_panel_5_view_more.setVisible(false);
+        cars_panel_5.setVisible(false);
         int limit = 5;
         int offset = 0;
         if(page_id > 1) {
@@ -105,9 +105,9 @@ public class CarList extends javax.swing.JFrame {
                         });
                     break;
                     case 4:
-                        cars_panel_3.setVisible(true);
-                        cars_panel_3_icon.setIcon(new ImageIcon(image));
-                        cars_panel_3_name.setText(single_car[1]);
+                        cars_panel_4.setVisible(true);
+                        cars_panel_4_icon.setIcon(new ImageIcon(image));
+                        cars_panel_4_name.setText(single_car[1]);
                         cars_panel_4_company_name.setText(single_car[3]);
                         cars_panel_4_buy.addMouseListener(new java.awt.event.MouseAdapter() {
                             @Override
@@ -117,6 +117,25 @@ public class CarList extends javax.swing.JFrame {
                             }
                         });
                         cars_panel_4_view_more.addMouseListener(new java.awt.event.MouseAdapter() {
+                            @Override
+                            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                               viewCar(single_car_id);
+                            }
+                        });
+                    break;
+                    case 5:
+                        cars_panel_5.setVisible(true);
+                        cars_panel_5_icon.setIcon(new ImageIcon(image));
+                        cars_panel_5_name.setText(single_car[1]);
+                        cars_panel_5_company_name.setText(single_car[3]);
+                        cars_panel_5_buy.addMouseListener(new java.awt.event.MouseAdapter() {
+                            @Override
+                            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                               // companySelect(single_company_id);
+                               System.out.println("Something something meri jaan");
+                            }
+                        });
+                        cars_panel_5_view_more.addMouseListener(new java.awt.event.MouseAdapter() {
                             @Override
                             public void mouseClicked(java.awt.event.MouseEvent evt) {
                                viewCar(single_car_id);
@@ -175,14 +194,14 @@ public class CarList extends javax.swing.JFrame {
         cars_panel_4_buy = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         cars_panel_4_view_more = new javax.swing.JLabel();
-        cars_panel_5_view_more = new javax.swing.JPanel();
+        cars_panel_5 = new javax.swing.JPanel();
         cars_panel_5_icon = new javax.swing.JLabel();
         cars_panel_5_name = new javax.swing.JLabel();
         cars_panel_5_company_name = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         cars_panel_5_buy = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
-        jLabel27 = new javax.swing.JLabel();
+        cars_panel_5_view_more = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -571,8 +590,8 @@ public class CarList extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        cars_panel_5_view_more.setBackground(new java.awt.Color(58, 56, 77));
-        cars_panel_5_view_more.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
+        cars_panel_5.setBackground(new java.awt.Color(58, 56, 77));
+        cars_panel_5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
 
         cars_panel_5_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/car-van.png"))); // NOI18N
 
@@ -602,28 +621,28 @@ public class CarList extends javax.swing.JFrame {
 
         jPanel15.setBackground(new java.awt.Color(58, 56, 77));
 
-        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/more.png"))); // NOI18N
+        cars_panel_5_view_more.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/more.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel27, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+            .addComponent(cars_panel_5_view_more, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+            .addComponent(cars_panel_5_view_more, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout cars_panel_5_view_moreLayout = new javax.swing.GroupLayout(cars_panel_5_view_more);
-        cars_panel_5_view_more.setLayout(cars_panel_5_view_moreLayout);
-        cars_panel_5_view_moreLayout.setHorizontalGroup(
-            cars_panel_5_view_moreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cars_panel_5_view_moreLayout.createSequentialGroup()
+        javax.swing.GroupLayout cars_panel_5Layout = new javax.swing.GroupLayout(cars_panel_5);
+        cars_panel_5.setLayout(cars_panel_5Layout);
+        cars_panel_5Layout.setHorizontalGroup(
+            cars_panel_5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cars_panel_5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cars_panel_5_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addGroup(cars_panel_5_view_moreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(cars_panel_5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(cars_panel_5_name, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cars_panel_5_company_name, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
@@ -632,18 +651,18 @@ public class CarList extends javax.swing.JFrame {
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        cars_panel_5_view_moreLayout.setVerticalGroup(
-            cars_panel_5_view_moreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        cars_panel_5Layout.setVerticalGroup(
+            cars_panel_5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(cars_panel_5_icon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(cars_panel_5_view_moreLayout.createSequentialGroup()
+            .addGroup(cars_panel_5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(cars_panel_5_view_moreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cars_panel_5_view_moreLayout.createSequentialGroup()
+                .addGroup(cars_panel_5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(cars_panel_5Layout.createSequentialGroup()
                         .addComponent(cars_panel_5_name)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cars_panel_5_company_name))
-                    .addGroup(cars_panel_5_view_moreLayout.createSequentialGroup()
-                        .addGroup(cars_panel_5_view_moreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(cars_panel_5Layout.createSequentialGroup()
+                        .addGroup(cars_panel_5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -677,7 +696,7 @@ public class CarList extends javax.swing.JFrame {
                     .addComponent(cars_panel_2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cars_panel_3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cars_panel_4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cars_panel_5_view_more, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cars_panel_5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -693,7 +712,7 @@ public class CarList extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cars_panel_4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cars_panel_5_view_more, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cars_panel_5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -773,12 +792,12 @@ public class CarList extends javax.swing.JFrame {
     private javax.swing.JLabel cars_panel_4_icon;
     private javax.swing.JLabel cars_panel_4_name;
     private javax.swing.JLabel cars_panel_4_view_more;
+    private javax.swing.JPanel cars_panel_5;
     private javax.swing.JLabel cars_panel_5_buy;
     private javax.swing.JLabel cars_panel_5_company_name;
     private javax.swing.JLabel cars_panel_5_icon;
     private javax.swing.JLabel cars_panel_5_name;
-    private javax.swing.JPanel cars_panel_5_view_more;
-    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel cars_panel_5_view_more;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
