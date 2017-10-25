@@ -128,23 +128,21 @@ public class SQLdb {
     }
     
     public String getCarDetails(int car_id) {
-        String rtrn[][] = new String[1][7];
+        String rtrn[] = new String[7];
         String return_str = "";
         try {
             // TODO add your handling code here:
             Statement st;
             st = con.createStatement();
-            int count = 0;
             ResultSet re = st.executeQuery("SELECT * FROM cars WHERE `id`="+car_id);
             while(re.next()){
-                rtrn[count][0] = re.getString("id");
-                rtrn[count][1] = re.getString("name");
-                rtrn[count][2] = re.getString("icon");
-                rtrn[count][3] = re.getString("company_name");
-                rtrn[count][4] = re.getString("image");
-                rtrn[count][5] = re.getString("price");
-                rtrn[count][6] = re.getString("description");
-                count++;
+                rtrn[0] = re.getString("id");
+                rtrn[1] = re.getString("name");
+                rtrn[2] = re.getString("icon");
+                rtrn[3] = re.getString("company_name");
+                rtrn[4] = re.getString("image");
+                rtrn[5] = re.getString("price");
+                rtrn[6] = re.getString("description");
             }
             Gson gson = new Gson();
             return_str = gson.toJson(rtrn);

@@ -27,7 +27,9 @@ public class CarList extends javax.swing.JFrame {
     }
     
     public void viewCar(int car_id) {
-        System.out.println("Car Id is: "+car_id);
+        CarDetails car_details = new CarDetails(this.user_obj_str, car_id);
+        car_details.setVisible(true);
+        this.dispose();
     }
     
     public void buyCar(int car_id) {

@@ -50,13 +50,15 @@
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jPanel3" max="32767" attributes="0"/>
-                      <Component id="jPanel6" max="32767" attributes="0"/>
+                      <Component id="car_image_label_panel" max="32767" attributes="0"/>
+                      <Component id="car_buy_panel" max="32767" attributes="0"/>
+                      <Component id="car_price" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jLabel1" max="32767" attributes="0"/>
-                      <Component id="jLabel2" pref="380" max="32767" attributes="0"/>
+                      <Component id="car_name_label" max="32767" attributes="0"/>
+                      <Component id="car_company_label" pref="380" max="32767" attributes="0"/>
+                      <Component id="car_description_label" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
               </Group>
@@ -68,15 +70,21 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="car_image_label_panel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="car_price" min="-2" pref="35" max="-2" attributes="0"/>
+                          <EmptySpace pref="168" max="32767" attributes="0"/>
+                          <Component id="car_buy_panel" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="car_name_label" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="car_company_label" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="car_description_label" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="221" max="32767" attributes="0"/>
-                  <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -206,22 +214,36 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel3">
+        <Container class="javax.swing.JPanel" name="car_image_label_panel">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="4d" green="38" red="3a" type="rgb"/>
+            </Property>
+          </Properties>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="car_image_label" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="160" max="32767" attributes="0"/>
+                  <Component id="car_image_label" alignment="0" pref="160" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="car_image_label">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="4d" green="38" red="3a" type="rgb"/>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="car_name_label">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="1"/>
@@ -232,7 +254,7 @@
             <Property name="text" type="java.lang.String" value="Car Name"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="car_company_label">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
@@ -243,7 +265,7 @@
             <Property name="text" type="java.lang.String" value="Company Name"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JPanel" name="jPanel6">
+        <Container class="javax.swing.JPanel" name="car_buy_panel">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="4d" green="38" red="3a" type="rgb"/>
@@ -262,7 +284,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <Component id="car_buy_label" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="60" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -271,14 +293,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel3" pref="33" max="32767" attributes="0"/>
+                      <Component id="car_buy_label" pref="33" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel3">
+            <Component class="javax.swing.JLabel" name="car_buy_label">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
@@ -291,6 +313,33 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JLabel" name="car_price">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="4d" green="38" red="3a" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="18" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Price:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="car_description_label">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="18" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="jLabel1"/>
+            <Property name="verticalAlignment" type="int" value="1"/>
+            <Property name="autoscrolls" type="boolean" value="true"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>
