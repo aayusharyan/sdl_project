@@ -47,7 +47,7 @@ public class CompanyList extends javax.swing.JFrame {
             for(String[] single_company : company_data) {
                 if(single_company[0] != null) {
                     int single_company_id = Integer.parseInt(single_company[0]);
-                    int company_location = single_company_id%12;
+                    int company_location = (single_company_id-1)%9;
                     Image image = new ImageIcon(this.getClass().getResource(single_company[2])).getImage();
                     switch (company_location) {
                         case 0:
