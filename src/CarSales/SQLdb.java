@@ -106,7 +106,11 @@ public class SQLdb {
             if(offset > 0) {
                 offset_statement = " OFFSET "+offset+" ";
             }
-            ResultSet re = st.executeQuery("SELECT * FROM cars WHERE `company_id`="+company_id+offset_statement+" LIMIT "+limit);
+            String whereSTR = "";
+            if(company_id > 0) {
+                whereSTR = " WHERE `company_id` = '" +company_id+ "'"; 
+            }
+            ResultSet re = st.executeQuery("SELECT * FROM cars "+whereSTR+" LIMIT "+limit+offset_statement);
             while(re.next()){
                 rtrn[count][0] = re.getString("id");
                 rtrn[count][1] = re.getString("name");
@@ -149,6 +153,36 @@ public class SQLdb {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
         return return_str;
+    }
+    
+    public String makeTransaction(User user_obj, int car_id) {
+        return "Ohhh, Good. A transaction have been made";
+    }
+    
+    public int remainingCars(int company_id,int offset,int limit) {
+        int total_elems = 0;
+        try {
+            // TODO add your handling code here:
+            Statement st;
+            st = con.createStatement();
+            String whereSTR = "";
+            if(company_id > 0) {
+                whereSTR = " WHERE `company_id` = '" +company_id+ "'"; 
+            }
+            ResultSet re = st.executeQuery("SELECT COUNT(*) AS total FROM cars "+whereSTR);
+            while(re.next()){
+                total_elems = Integer.parseInt(re.getString("total"));
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int already_done = offset+limit;
+        int remaining = total_elems - already_done;
+        if(remaining < 0) {
+            remaining = 0;
+        }
+        return remaining;
     }
     
 }
