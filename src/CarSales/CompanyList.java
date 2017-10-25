@@ -14,11 +14,18 @@ import javax.swing.ImageIcon;
  * @author aayush
  */
 public class CompanyList extends javax.swing.JFrame {
+    
+    public void companySelect(int company_id) {
+        CarList car_list = new CarList(company_id, -1);
+        car_list.setVisible(true);
+        this.dispose();
+    }
 
     /**
      * Creates new form CompanyList
+     * @param json_user_data
      */
-    public CompanyList() {
+    public CompanyList(String json_user_data) {
         initComponents();
         company_panel_1.setVisible(false);
         company_panel_2.setVisible(false);
@@ -38,47 +45,101 @@ public class CompanyList extends javax.swing.JFrame {
         String[][] company_data = gson.fromJson(company_json_data, String[][].class);
         for(String[] single_company : company_data) {
             if(single_company[0] != null) {
-            int single_company_id = Integer.parseInt(single_company[0]);
-            int company_location = single_company_id%12;
-            Image image = new ImageIcon(this.getClass().getResource(single_company[2])).getImage();
-            switch (company_location) {
-                case 1:
-                    company_panel_1.setVisible(true);
-                    company_label_1.setIcon(new ImageIcon(image));
-                    break;
-                case 2:
-                    company_panel_2.setVisible(true);
-                    company_label_2.setIcon(new ImageIcon(image));                    
-                    break;
-                case 3:
-                    company_panel_3.setVisible(true);
-                    company_label_3.setIcon(new ImageIcon(image));
-                    break;
-                case 4:
-                    company_panel_4.setVisible(true);
-                    company_label_4.setIcon(new ImageIcon(image));
-                    break;
-                case 5:
-                    company_panel_5.setVisible(true);
-                    company_label_5.setIcon(new ImageIcon(image));
-                    break;
-                case 6:
-                    company_panel_6.setVisible(true);
-                    company_label_6.setIcon(new ImageIcon(image));
-                    break;
-                case 7:
-                    company_panel_7.setVisible(true);
-                    company_label_7.setIcon(new ImageIcon(image));
-                    break;
-                case 8:
-                    company_panel_8.setVisible(true);
-                    company_label_8.setIcon(new ImageIcon(image));
-                    break;
-                case 9:
-                    company_panel_9.setVisible(true);
-                    company_label_9.setIcon(new ImageIcon(image));
-                    break;
-            }
+                int single_company_id = Integer.parseInt(single_company[0]);
+                int company_location = single_company_id%12;
+                Image image = new ImageIcon(this.getClass().getResource(single_company[2])).getImage();
+                switch (company_location) {
+                    case 1:
+                        company_panel_1.setVisible(true);
+                        company_label_1.setIcon(new ImageIcon(image));
+                        company_label_1.addMouseListener(new java.awt.event.MouseAdapter() {
+                            @Override
+                            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                companySelect(single_company_id);
+                            }
+                        });
+                        break;
+                    case 2:
+                        company_panel_2.setVisible(true);
+                        company_label_2.setIcon(new ImageIcon(image));  
+                        company_label_2.addMouseListener(new java.awt.event.MouseAdapter() {
+                            @Override
+                            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                companySelect(single_company_id);
+                            }
+                        });
+                        break;
+                    case 3:
+                        company_panel_3.setVisible(true);
+                        company_label_3.setIcon(new ImageIcon(image));
+                        company_label_3.addMouseListener(new java.awt.event.MouseAdapter() {
+                            @Override
+                            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                companySelect(single_company_id);
+                            }
+                        });
+                        break;
+                    case 4:
+                        company_panel_4.setVisible(true);
+                        company_label_4.setIcon(new ImageIcon(image));
+                        company_label_4.addMouseListener(new java.awt.event.MouseAdapter() {
+                            @Override
+                            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                companySelect(single_company_id);
+                            }
+                        });
+                        break;
+                    case 5:
+                        company_panel_5.setVisible(true);
+                        company_label_5.setIcon(new ImageIcon(image));
+                        company_label_5.addMouseListener(new java.awt.event.MouseAdapter() {
+                            @Override
+                            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                companySelect(single_company_id);
+                            }
+                        });
+                        break;
+                    case 6:
+                        company_panel_6.setVisible(true);
+                        company_label_6.setIcon(new ImageIcon(image));
+                        company_label_6.addMouseListener(new java.awt.event.MouseAdapter() {
+                            @Override
+                            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                companySelect(single_company_id);
+                            }
+                        });
+                        break;
+                    case 7:
+                        company_panel_7.setVisible(true);
+                        company_label_7.setIcon(new ImageIcon(image));
+                        company_label_7.addMouseListener(new java.awt.event.MouseAdapter() {
+                            @Override
+                            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                companySelect(single_company_id);
+                            }
+                        });
+                        break;
+                    case 8:
+                        company_panel_8.setVisible(true);
+                        company_label_8.setIcon(new ImageIcon(image));
+                        company_label_8.addMouseListener(new java.awt.event.MouseAdapter() {
+                            @Override
+                            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                companySelect(single_company_id);
+                            }
+                        });
+                        break;
+                    case 9:
+                        company_panel_9.setVisible(true);
+                        company_label_9.setIcon(new ImageIcon(image));
+                        company_label_9.addMouseListener(new java.awt.event.MouseAdapter() {
+                            @Override
+                            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                companySelect(single_company_id);
+                            }
+                        });
+                        break;
+                }
             }
         }
     }
@@ -466,7 +527,7 @@ public class CompanyList extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CompanyList().setVisible(true);
+                new CompanyList("").setVisible(true);
             }
         });
     }
