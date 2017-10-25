@@ -52,7 +52,7 @@ public class SQLdb {
             }
         }
         catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return rtrn;
@@ -89,7 +89,7 @@ public class SQLdb {
             return_str = gson.toJson(rtrn);
         }
         catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
         return return_str;
     }
@@ -122,7 +122,7 @@ public class SQLdb {
             return_str = gson.toJson(rtrn);
         }
         catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
         return return_str;
     }
@@ -148,7 +148,7 @@ public class SQLdb {
             return_str = gson.toJson(rtrn);
         }
         catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
         return return_str;
     }
@@ -173,7 +173,7 @@ public class SQLdb {
             }
         }
         catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
         int already_done = offset+limit;
         int remaining = total_elems - already_done;
