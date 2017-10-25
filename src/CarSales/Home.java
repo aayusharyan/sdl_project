@@ -51,7 +51,7 @@ public class Home extends javax.swing.JFrame {
             String[] login_status = connection.login(json_user_data);
             if(login_status[0].equals("true")) {
                 //System.out.println("Will Log in");
-                CompanyList comp=new CompanyList();
+                CompanyList comp=new CompanyList(json_user_data);
                 comp.setVisible(true);
                 this.dispose();
             } else {
@@ -78,7 +78,7 @@ public class Home extends javax.swing.JFrame {
             boolean register_status = connection.register(json_user_data);
             if(register_status) {
                 //System.out.println("Will Log in");
-                CompanyList comp=new CompanyList();
+                CompanyList comp=new CompanyList(json_user_data);
                 comp.setVisible(true);
                 this.dispose();
             } else {
