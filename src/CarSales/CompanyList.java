@@ -194,6 +194,7 @@ public class CompanyList extends javax.swing.JFrame {
 
         logout_label.setBackground(new java.awt.Color(38, 40, 55));
         logout_label.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(242, 109, 125), 1, true));
+        logout_label.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         logout_label.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logout_labelMouseClicked(evt);
@@ -203,6 +204,7 @@ public class CompanyList extends javax.swing.JFrame {
         logout_textfield.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         logout_textfield.setForeground(new java.awt.Color(255, 255, 255));
         logout_textfield.setText("Logout");
+        logout_textfield.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         logout_textfield.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logout_textfieldMouseClicked(evt);
