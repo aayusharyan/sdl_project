@@ -105,9 +105,9 @@ public class CarList extends javax.swing.JFrame {
                         });
                     break;
                     case 4:
-                        cars_panel_3.setVisible(true);
-                        cars_panel_3_icon.setIcon(new ImageIcon(image));
-                        cars_panel_3_name.setText(single_car[1]);
+                        cars_panel_4.setVisible(true);
+                        cars_panel_4_icon.setIcon(new ImageIcon(image));
+                        cars_panel_4_name.setText(single_car[1]);
                         cars_panel_4_company_name.setText(single_car[3]);
                         cars_panel_4_buy.addMouseListener(new java.awt.event.MouseAdapter() {
                             @Override
