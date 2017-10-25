@@ -65,7 +65,7 @@ public class CarList extends javax.swing.JFrame {
             for(String[] single_car : cars_data) {
                 if(single_car[0] != null) {
                     int single_car_id = Integer.parseInt(single_car[0]);
-                    int car_location = single_car_id%5;
+                    int car_location = (single_car_id-1)%5;
                     Image image = new ImageIcon(this.getClass().getResource(single_car[2])).getImage();
                     switch (car_location) {
                         case 0:
