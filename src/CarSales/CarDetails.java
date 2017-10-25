@@ -13,10 +13,19 @@ import com.google.gson.Gson;
  */
 public class CarDetails extends javax.swing.JFrame {
     private int user_id;
+    private int car_id;
     /**
      * Creates new form CarDetails
      */
+    
+    public void buyCar() {
+        Receipt transaction = new Receipt(this.user_id, this.car_id);
+        transaction.setVisible(true);
+        this.dispose();
+    }
+    
     public CarDetails(int user_id, int car_id) {
+        this.car_id = car_id;
         this.user_id = user_id;
         initComponents();
         
@@ -30,6 +39,9 @@ public class CarDetails extends javax.swing.JFrame {
             car_price.setText("Price: "+car_data[5]);
             car_description_label.setText(car_data[6]);
             
+            String user_obj_json = connection.getUserDetails(this.user_id);
+            String[] user_details = gson.fromJson(user_obj_json, String[].class);
+            user_name.setText(user_details[1]);
             loaderpanel.setVisible(false);
         }).start();    
     }
@@ -71,8 +83,18 @@ public class CarDetails extends javax.swing.JFrame {
 
         jPanel9.setBackground(new java.awt.Color(38, 40, 55));
         jPanel9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
+        jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel9MouseClicked(evt);
+            }
+        });
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/account.png"))); // NOI18N
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -90,10 +112,20 @@ public class CarDetails extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(38, 40, 55));
         jPanel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(242, 109, 125), 1, true));
+        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel5MouseClicked(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Logout");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -102,7 +134,7 @@ public class CarDetails extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jLabel4)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,7 +176,6 @@ public class CarDetails extends javax.swing.JFrame {
         user_name.setBackground(new java.awt.Color(38, 40, 55));
         user_name.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         user_name.setForeground(new java.awt.Color(255, 255, 255));
-        user_name.setText("jLabel7");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -185,7 +216,7 @@ public class CarDetails extends javax.swing.JFrame {
                 .addComponent(user_name)
                 .addGap(102, 102, 102)
                 .addComponent(loaderpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -217,10 +248,20 @@ public class CarDetails extends javax.swing.JFrame {
 
         car_buy_panel.setBackground(new java.awt.Color(58, 56, 77));
         car_buy_panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(94, 237, 181)));
+        car_buy_panel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                car_buy_panelMouseClicked(evt);
+            }
+        });
 
         car_buy_label.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         car_buy_label.setForeground(new java.awt.Color(255, 255, 255));
         car_buy_label.setText("Buy Now");
+        car_buy_label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                car_buy_labelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout car_buy_panelLayout = new javax.swing.GroupLayout(car_buy_panel);
         car_buy_panel.setLayout(car_buy_panelLayout);
@@ -278,7 +319,7 @@ public class CarDetails extends javax.swing.JFrame {
                         .addComponent(car_image_label_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(car_price, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
                         .addComponent(car_buy_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(car_name_label)
@@ -308,6 +349,38 @@ public class CarDetails extends javax.swing.JFrame {
         company_list.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_back_btnMouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        Home h = new Home();
+        h.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
+        Home h = new Home();
+        h.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jPanel5MouseClicked
+
+    private void car_buy_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_car_buy_labelMouseClicked
+        buyCar();
+    }//GEN-LAST:event_car_buy_labelMouseClicked
+
+    private void car_buy_panelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_car_buy_panelMouseClicked
+        buyCar();
+    }//GEN-LAST:event_car_buy_panelMouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        ProfileM prifile_setting = new ProfileM(this.user_id);
+        prifile_setting.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
+        ProfileM prifile_setting = new ProfileM(this.user_id);
+        prifile_setting.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jPanel9MouseClicked
 
     /**
      * @param args the command line arguments

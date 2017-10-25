@@ -71,7 +71,7 @@
                           <Component id="car_image_label_panel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="car_price" min="-2" pref="35" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="176" max="32767" attributes="0"/>
                           <Component id="car_buy_panel" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -143,7 +143,7 @@
                       <Component id="user_name" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
                       <Component id="loaderpanel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="155" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="jPanel5" max="32767" attributes="0"/>
                           <Component id="jPanel9" max="32767" attributes="0"/>
@@ -167,6 +167,9 @@
                   </Border>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel9MouseClicked"/>
+              </Events>
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -191,6 +194,9 @@
                       <Image iconType="3" name="/CarSales/assets/icons/account.png"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel7MouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -207,6 +213,9 @@
                   </Border>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel5MouseClicked"/>
+              </Events>
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -214,7 +223,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="52" max="32767" attributes="0"/>
+                          <EmptySpace pref="53" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -239,6 +248,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Logout"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel4MouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -310,7 +322,6 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="jLabel7"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -379,6 +390,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="car_buy_panelMouseClicked"/>
+          </Events>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -411,6 +425,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Buy Now"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="car_buy_labelMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

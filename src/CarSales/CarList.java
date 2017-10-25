@@ -255,8 +255,18 @@ public class CarList extends javax.swing.JFrame {
 
         jPanel9.setBackground(new java.awt.Color(38, 40, 55));
         jPanel9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
+        jPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel9MouseClicked(evt);
+            }
+        });
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/account.png"))); // NOI18N
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -274,10 +284,20 @@ public class CarList extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(38, 40, 55));
         jPanel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(242, 109, 125), 1, true));
+        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel5MouseClicked(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Logout");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -333,7 +353,6 @@ public class CarList extends javax.swing.JFrame {
         user_name.setBackground(new java.awt.Color(38, 40, 55));
         user_name.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         user_name.setForeground(new java.awt.Color(255, 255, 255));
-        user_name.setText("jLabel7");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -932,6 +951,30 @@ public class CarList extends javax.swing.JFrame {
     private void next_page_panelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_next_page_panelMouseClicked
         changePage(this.curr_page_id+1);
     }//GEN-LAST:event_next_page_panelMouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        Home h = new Home();
+        h.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
+        Home h = new Home();
+        h.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jPanel5MouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        ProfileM prifile_setting = new ProfileM(this.user_id);
+        prifile_setting.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
+        ProfileM prifile_setting = new ProfileM(this.user_id);
+        prifile_setting.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jPanel9MouseClicked
 
     /**
      * @param args the command line arguments

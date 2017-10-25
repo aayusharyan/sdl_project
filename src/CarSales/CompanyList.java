@@ -237,8 +237,18 @@ public class CompanyList extends javax.swing.JFrame {
 
         jPanel8.setBackground(new java.awt.Color(38, 40, 55));
         jPanel8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
+        jPanel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel8MouseClicked(evt);
+            }
+        });
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/account.png"))); // NOI18N
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -540,6 +550,18 @@ public class CompanyList extends javax.swing.JFrame {
         h.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_logout_textfieldMouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        ProfileM prifile_setting = new ProfileM(this.user_id);
+        prifile_setting.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jPanel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseClicked
+        ProfileM prifile_setting = new ProfileM(this.user_id);
+        prifile_setting.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jPanel8MouseClicked
 
     /**
      * @param args the command line arguments

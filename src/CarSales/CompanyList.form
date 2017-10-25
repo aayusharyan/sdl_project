@@ -196,6 +196,9 @@
                   </Border>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel8MouseClicked"/>
+              </Events>
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -220,6 +223,9 @@
                       <Image iconType="3" name="/CarSales/assets/icons/account.png"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel7MouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

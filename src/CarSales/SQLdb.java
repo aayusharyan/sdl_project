@@ -60,7 +60,7 @@ public class SQLdb {
     
     public String getUserDetails(int user_id) {
         String return_str = "";
-        String[] rtrn = new String[4];
+        String[] rtrn = new String[5];
         rtrn[0] = "false";
         try {
             // TODO add your handling code here:
@@ -72,6 +72,7 @@ public class SQLdb {
                 rtrn[1] = re.getString("Name");
                 rtrn[2] = re.getString("Email");
                 rtrn[3] = re.getString("Phone");
+                rtrn[4] = re.getString("Password");
             }
         }
         catch (SQLException ex) {
@@ -226,6 +227,18 @@ public class SQLdb {
             remaining = 0;
         }
         return remaining;
+    }
+    
+    public boolean updateUser(int user_id, String name, String password, String phone) {
+        try {
+            Statement st = con.createStatement();
+            st.execute("UPDATE carsales SET `Name` = '"+name+"', `Password` = '"+password+"', `Phone` = '"+phone+"' WHERE `Id` = "+user_id);
+            return true;
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;   
     }
     
 }
