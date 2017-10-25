@@ -52,7 +52,7 @@
                       <Component id="cars_panel_2" alignment="1" max="32767" attributes="0"/>
                       <Component id="cars_panel_3" alignment="1" max="32767" attributes="0"/>
                       <Component id="cars_panel_4" alignment="1" max="32767" attributes="0"/>
-                      <Component id="cars_panel_5" alignment="1" max="32767" attributes="0"/>
+                      <Component id="cars_panel_5_view_more" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -71,7 +71,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="cars_panel_4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="cars_panel_5" min="-2" max="-2" attributes="0"/>
+                  <Component id="cars_panel_5_view_more" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -795,7 +795,7 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="cars_panel_5">
+        <Container class="javax.swing.JPanel" name="cars_panel_5_view_more">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="4d" green="38" red="3a" type="rgb"/>
