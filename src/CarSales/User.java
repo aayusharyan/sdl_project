@@ -14,6 +14,7 @@ public class User {
     private String password;
     private String name;
     private String phone;
+    private int id;
     public User() {
     }
     
@@ -42,5 +43,9 @@ public class User {
     
     public String getPhone() {
         return this.phone;
+    }
+    
+    public int getId() {
+        return this.id;
     }
 }

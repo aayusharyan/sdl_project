@@ -15,25 +15,26 @@ import javax.swing.ImageIcon;
  */
 public class CarList extends javax.swing.JFrame {
     
-    private String user_obj_str;
-    private User user_obj;
+    private int user_id;
     private final int curr_page_id;
     private final int curr_company_id;
     
     public void changePage(int new_page_id) {
-        CarList car_list = new CarList(this.curr_company_id, new_page_id);
+        CarList car_list = new CarList(this.user_id, this.curr_company_id, new_page_id);
         car_list.setVisible(true);
         this.dispose();
     }
     
     public void viewCar(int car_id) {
-        CarDetails car_details = new CarDetails(this.user_obj_str, car_id);
+        CarDetails car_details = new CarDetails(this.user_id, car_id);
         car_details.setVisible(true);
         this.dispose();
     }
     
     public void buyCar(int car_id) {
-        System.out.println("Purchased Car Id: "+car_id);
+        Receipt transaction = new Receipt(this.user_id, car_id);
+        transaction.setVisible(true);
+        this.dispose();
     }
 
     /**
@@ -41,10 +42,10 @@ public class CarList extends javax.swing.JFrame {
      * @param company_id
      * @param page_id (Optional)
      */
-    public CarList(int company_id, int page_id) {
+    public CarList(int user_id, int company_id, int page_id) {
         this.curr_company_id = company_id;
         this.curr_page_id = page_id;
-        this.user_obj_str = "";
+        this.user_id = user_id;
         initComponents();
         cars_panel_1.setVisible(false);
         cars_panel_2.setVisible(false);
@@ -163,7 +164,10 @@ public class CarList extends javax.swing.JFrame {
                     }
                 }
             }
-            loaderpanel.setVisible(false);
+            String user_obj_json = connection.getUserDetails(this.user_id);
+            String[] user_details = gson.fromJson(user_obj_json, String[].class);
+            user_name.setText(user_details[1]);
+            
             if(offset > 0) {
                 prev_page_panel.setVisible(true);
             }
@@ -173,7 +177,7 @@ public class CarList extends javax.swing.JFrame {
             if(remaining_items > 0) {
                 next_page_panel.setVisible(true);
             }
-            
+            loaderpanel.setVisible(false);
         }).start();
     }
 
@@ -908,7 +912,7 @@ public class CarList extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void back_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back_btnMouseClicked
-        CompanyList company_list = new CompanyList(this.user_obj_str);
+        CompanyList company_list = new CompanyList(this.user_id);
         company_list.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_back_btnMouseClicked
@@ -959,7 +963,7 @@ public class CarList extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CarList(-1, 1).setVisible(true);
+                new CarList(0, -1, 1).setVisible(true);
             }
         });
     }

@@ -48,7 +48,7 @@ public class SQLdb {
             while(re.next()){
                 // ResultSet processing here
                 rtrn[0] = "true";
-                rtrn[1] = "";
+                rtrn[1] = re.getString("Id");
             }
         }
         catch (SQLException ex) {
@@ -57,17 +57,50 @@ public class SQLdb {
         
         return rtrn;
     }
-    public boolean register(String json_user_data) {
+    
+    public String getUserDetails(int user_id) {
+        String return_str = "";
+        String[] rtrn = new String[4];
+        rtrn[0] = "false";
+        try {
+            // TODO add your handling code here:
+            Statement st;
+            st = con.createStatement();
+            ResultSet re = st.executeQuery("SELECT * FROM carsales WHERE `Id` = "+user_id);
+            while(re.next()){
+                rtrn[0] = re.getString("Id");
+                rtrn[1] = re.getString("Name");
+                rtrn[2] = re.getString("Email");
+                rtrn[3] = re.getString("Phone");
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         Gson gson = new Gson();
+        return_str = gson.toJson(rtrn);
+        
+        return return_str;
+    }
+    
+    public int register(String json_user_data) {
+        Gson gson = new Gson();
+        int id = 0;
         User user_obj = gson.fromJson(json_user_data, User.class);
         try {
             Statement st = con.createStatement();
             st.execute("INSERT INTO carsales (`Name`, `Password`, `Email`, `Phone`) VALUES('"+user_obj.getName()+"', '"+user_obj.getPassword()+"', '"+user_obj.getEmail()+"', '"+user_obj.getPhone()+"')");
-            return true;
+            st = con.createStatement();
+            ResultSet re = st.executeQuery("SELECT Id FROM carsales WHERE `Email` = '"+user_obj.getEmail()+"' AND `Password` = '"+user_obj.getPassword()+"' LIMIT 1");
+            while(re.next()) {
+                id = Integer.parseInt(re.getString("Id"));
+            }
+            return id;
         } catch (SQLException ex) {
             Logger.getLogger(SQLdb.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
         }
+        return id;
     }
     
     public String fetchComapnies() {
@@ -153,8 +186,20 @@ public class SQLdb {
         return return_str;
     }
     
-    public String makeTransaction(User user_obj, int car_id) {
-        return "Ohhh, Good. A transaction have been made";
+    public int makeTransaction(int user_id, int car_id) {
+        int transaction_id = 0;
+        try {
+            Statement st = con.createStatement();
+            st.execute("INSERT INTO transactions (`user_id`, `product_id`) VALUES("+user_id+", "+car_id+")");
+            st = con.createStatement();
+            ResultSet re = st.executeQuery("SELECT Id FROM transactions WHERE `user_id` = "+user_id+" AND `product_id` = "+car_id+" ORDER BY id DESC LIMIT 1");
+            while(re.next()) {
+                transaction_id = Integer.parseInt(re.getString("Id"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SQLdb.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return transaction_id;
     }
     
     public int remainingCars(int company_id,int offset,int limit) {

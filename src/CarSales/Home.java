@@ -50,8 +50,7 @@ public class Home extends javax.swing.JFrame {
             SQLdb connection = new SQLdb();
             String[] login_status = connection.login(json_user_data);
             if(login_status[0].equals("true")) {
-                //System.out.println("Will Log in");
-                CompanyList comp=new CompanyList(json_user_data);
+                CompanyList comp=new CompanyList(Integer.parseInt(login_status[1]));
                 comp.setVisible(true);
                 this.dispose();
             } else {
@@ -75,10 +74,9 @@ public class Home extends javax.swing.JFrame {
         String json_user_data = gson.toJson(user_obj);
         new Thread(() -> {
             SQLdb connection = new SQLdb();
-            boolean register_status = connection.register(json_user_data);
-            if(register_status) {
-                //System.out.println("Will Log in");
-                CompanyList comp=new CompanyList(json_user_data);
+            int register_status = connection.register(json_user_data);
+            if(register_status > 0) {
+                CompanyList comp=new CompanyList(register_status);
                 comp.setVisible(true);
                 this.dispose();
             } else {

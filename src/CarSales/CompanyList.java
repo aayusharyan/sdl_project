@@ -15,17 +15,20 @@ import javax.swing.ImageIcon;
  */
 public class CompanyList extends javax.swing.JFrame {
     
+    private int user_id;
+    
     public void companySelect(int company_id) {
-        CarList car_list = new CarList(company_id, -1);
+        CarList car_list = new CarList(user_id, company_id, -1);
         car_list.setVisible(true);
         this.dispose();
     }
 
     /**
      * Creates new form CompanyList
-     * @param json_user_data
+     * @param user_id
      */
-    public CompanyList(String json_user_data) {
+    public CompanyList(int user_id) {
+        this.user_id = user_id;
         initComponents();
         company_panel_1.setVisible(false);
         company_panel_2.setVisible(false);
@@ -143,6 +146,10 @@ public class CompanyList extends javax.swing.JFrame {
                     }
                 }
             }
+        
+        String user_obj_json = connection.getUserDetails(this.user_id);
+        String[] user_details = gson.fromJson(user_obj_json, String[].class);
+        user_name.setText(user_details[1]);
         loaderpanel.setVisible(false);
         }).start();
     }
@@ -255,7 +262,6 @@ public class CompanyList extends javax.swing.JFrame {
         user_name.setBackground(new java.awt.Color(38, 40, 55));
         user_name.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         user_name.setForeground(new java.awt.Color(255, 255, 255));
-        user_name.setText("jLabel7");
 
         loaderpanel.setBackground(new java.awt.Color(38, 40, 55));
 
@@ -305,7 +311,7 @@ public class CompanyList extends javax.swing.JFrame {
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(user_name)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 310, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 327, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(logout_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -565,7 +571,7 @@ public class CompanyList extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CompanyList("").setVisible(true);
+                new CompanyList(0).setVisible(true);
             }
         });
     }
