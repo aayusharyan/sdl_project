@@ -50,7 +50,7 @@ public class CompanyList extends javax.swing.JFrame {
                     int company_location = single_company_id%12;
                     Image image = new ImageIcon(this.getClass().getResource(single_company[2])).getImage();
                     switch (company_location) {
-                        case 1:
+                        case 0:
                             company_panel_1.setVisible(true);
                             company_label_1.setIcon(new ImageIcon(image));
                             company_label_1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -60,7 +60,7 @@ public class CompanyList extends javax.swing.JFrame {
                                 }
                             });
                             break;
-                        case 2:
+                        case 1:
                             company_panel_2.setVisible(true);
                             company_label_2.setIcon(new ImageIcon(image));  
                             company_label_2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -70,7 +70,7 @@ public class CompanyList extends javax.swing.JFrame {
                                 }
                             });
                             break;
-                        case 3:
+                        case 2:
                             company_panel_3.setVisible(true);
                             company_label_3.setIcon(new ImageIcon(image));
                             company_label_3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -80,7 +80,7 @@ public class CompanyList extends javax.swing.JFrame {
                                 }
                             });
                             break;
-                        case 4:
+                        case 3:
                             company_panel_4.setVisible(true);
                             company_label_4.setIcon(new ImageIcon(image));
                             company_label_4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -90,7 +90,7 @@ public class CompanyList extends javax.swing.JFrame {
                                 }
                             });
                             break;
-                        case 5:
+                        case 4:
                             company_panel_5.setVisible(true);
                             company_label_5.setIcon(new ImageIcon(image));
                             company_label_5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -100,7 +100,7 @@ public class CompanyList extends javax.swing.JFrame {
                                 }
                             });
                             break;
-                        case 6:
+                        case 5:
                             company_panel_6.setVisible(true);
                             company_label_6.setIcon(new ImageIcon(image));
                             company_label_6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -110,7 +110,7 @@ public class CompanyList extends javax.swing.JFrame {
                                 }
                             });
                             break;
-                        case 7:
+                        case 6:
                             company_panel_7.setVisible(true);
                             company_label_7.setIcon(new ImageIcon(image));
                             company_label_7.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -120,7 +120,7 @@ public class CompanyList extends javax.swing.JFrame {
                                 }
                             });
                             break;
-                        case 8:
+                        case 7:
                             company_panel_8.setVisible(true);
                             company_label_8.setIcon(new ImageIcon(image));
                             company_label_8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -130,7 +130,7 @@ public class CompanyList extends javax.swing.JFrame {
                                 }
                             });
                             break;
-                        case 9:
+                        case 8:
                             company_panel_9.setVisible(true);
                             company_label_9.setIcon(new ImageIcon(image));
                             company_label_9.addMouseListener(new java.awt.event.MouseAdapter() {
