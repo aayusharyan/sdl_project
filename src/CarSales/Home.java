@@ -6,6 +6,7 @@
 package CarSales;
 
 import com.google.gson.Gson;
+import java.awt.Color;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
@@ -36,7 +37,56 @@ public class Home extends javax.swing.JFrame {
         invalid_credentials_err_msg.setVisible(false);
         invalid_register_err_msg.setVisible(false);
     }
-
+    public void login(){
+        loaderpanel.setVisible(true);
+        invalid_credentials_err_msg.setVisible(false);
+        String email = login_email.getText();
+        String password = String.valueOf(login_password.getPassword());
+        User user_obj = new User();
+        user_obj.setLogin(email, password);
+        Gson gson = new Gson();
+        String json_user_data = gson.toJson(user_obj);
+        new Thread(() -> {
+            SQLdb connection = new SQLdb();
+            String[] login_status = connection.login(json_user_data);
+            if(login_status[0].equals("true")) {
+                //System.out.println("Will Log in");
+                CompanyList comp=new CompanyList();
+                comp.setVisible(true);
+                this.dispose();
+            } else {
+                invalid_credentials_err_msg.setVisible(true);
+            }
+            System.out.println(String.valueOf(login_status));
+            loaderpanel.setVisible(false);
+        }).start();
+    }
+    public void register(){
+     loaderpanel.setVisible(true);
+        invalid_register_err_msg.setVisible(false);
+        
+        String name = register_name.getText();
+        String email = register_email.getText();
+        String password = String.valueOf(register_password.getPassword());
+        String phone = register_phone.getText();
+        User user_obj = new User();
+        user_obj.setRegister(name, email, password, phone);
+        Gson gson = new Gson();
+        String json_user_data = gson.toJson(user_obj);
+        new Thread(() -> {
+            SQLdb connection = new SQLdb();
+            boolean register_status = connection.register(json_user_data);
+            if(register_status) {
+                //System.out.println("Will Log in");
+                CompanyList comp=new CompanyList();
+                comp.setVisible(true);
+                this.dispose();
+            } else {
+                invalid_register_err_msg.setVisible(true);
+            }
+            loaderpanel.setVisible(false);
+        }).start();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -96,10 +146,18 @@ public class Home extends javax.swing.JFrame {
 
         register_name.setBackground(new java.awt.Color(38, 40, 55));
         register_name.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        register_name.setForeground(new java.awt.Color(255, 255, 255));
+        register_name.setForeground(new java.awt.Color(153, 153, 153));
         register_name.setText("Name");
         register_name.setToolTipText("");
         register_name.setBorder(null);
+        register_name.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                register_nameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                register_nameFocusLost(evt);
+            }
+        });
         register_name.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 register_nameMouseClicked(evt);
@@ -113,10 +171,18 @@ public class Home extends javax.swing.JFrame {
 
         register_email.setBackground(new java.awt.Color(38, 40, 55));
         register_email.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        register_email.setForeground(new java.awt.Color(255, 255, 255));
+        register_email.setForeground(new java.awt.Color(153, 153, 153));
         register_email.setText("Email");
         register_email.setToolTipText("");
         register_email.setBorder(null);
+        register_email.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                register_emailFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                register_emailFocusLost(evt);
+            }
+        });
         register_email.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 register_emailMouseClicked(evt);
@@ -129,16 +195,37 @@ public class Home extends javax.swing.JFrame {
         });
 
         register_password.setBackground(new java.awt.Color(38, 40, 55));
-        register_password.setForeground(new java.awt.Color(255, 255, 255));
+        register_password.setForeground(new java.awt.Color(153, 153, 153));
         register_password.setText("Password");
         register_password.setBorder(null);
+        register_password.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                register_passwordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                register_passwordFocusLost(evt);
+            }
+        });
+        register_password.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                register_passwordMouseClicked(evt);
+            }
+        });
 
         register_phone.setBackground(new java.awt.Color(38, 40, 55));
         register_phone.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        register_phone.setForeground(new java.awt.Color(255, 255, 255));
+        register_phone.setForeground(new java.awt.Color(153, 153, 153));
         register_phone.setText("Phone");
         register_phone.setToolTipText("");
         register_phone.setBorder(null);
+        register_phone.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                register_phoneFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                register_phoneFocusLost(evt);
+            }
+        });
         register_phone.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 register_phoneMouseClicked(evt);
@@ -162,6 +249,11 @@ public class Home extends javax.swing.JFrame {
         register_label.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         register_label.setForeground(new java.awt.Color(255, 255, 255));
         register_label.setText("Register");
+        register_label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                register_labelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout registerLayout = new javax.swing.GroupLayout(register);
         register.setLayout(registerLayout);
@@ -243,10 +335,18 @@ public class Home extends javax.swing.JFrame {
 
         login_email.setBackground(new java.awt.Color(58, 56, 77));
         login_email.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        login_email.setForeground(new java.awt.Color(255, 255, 255));
+        login_email.setForeground(new java.awt.Color(153, 153, 153));
         login_email.setText("Email");
         login_email.setToolTipText("");
         login_email.setBorder(null);
+        login_email.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                login_emailFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                login_emailFocusLost(evt);
+            }
+        });
         login_email.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 login_emailMouseClicked(evt);
@@ -259,9 +359,22 @@ public class Home extends javax.swing.JFrame {
         });
 
         login_password.setBackground(new java.awt.Color(58, 56, 77));
-        login_password.setForeground(new java.awt.Color(255, 255, 255));
+        login_password.setForeground(new java.awt.Color(153, 153, 153));
         login_password.setText("Password");
         login_password.setBorder(null);
+        login_password.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                login_passwordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                login_passwordFocusLost(evt);
+            }
+        });
+        login_password.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                login_passwordMouseClicked(evt);
+            }
+        });
 
         login.setBackground(new java.awt.Color(58, 56, 77));
         login.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
@@ -392,11 +505,11 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_register_nameActionPerformed
 
     private void register_nameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_register_nameMouseClicked
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_register_nameMouseClicked
 
     private void register_emailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_register_emailMouseClicked
-        // TODO add your handling code here:
+  
     }//GEN-LAST:event_register_emailMouseClicked
 
     private void register_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_emailActionPerformed
@@ -404,7 +517,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_register_emailActionPerformed
 
     private void register_phoneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_register_phoneMouseClicked
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_register_phoneMouseClicked
 
     private void register_phoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_register_phoneActionPerformed
@@ -412,7 +525,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_register_phoneActionPerformed
 
     private void login_emailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_login_emailMouseClicked
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_login_emailMouseClicked
 
     private void login_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_emailActionPerformed
@@ -420,56 +533,125 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_login_emailActionPerformed
 
     private void registerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerMouseClicked
-        loaderpanel.setVisible(true);
-        invalid_register_err_msg.setVisible(false);
-        
-        String name = register_name.getText();
-        String email = register_email.getText();
-        String password = String.valueOf(register_password.getPassword());
-        String phone = register_phone.getText();
-        User user_obj = new User();
-        user_obj.setRegister(name, email, password, phone);
-        Gson gson = new Gson();
-        String json_user_data = gson.toJson(user_obj);
-        new Thread(() -> {
-            SQLdb connection = new SQLdb();
-            boolean register_status = connection.register(json_user_data);
-            if(register_status) {
-                System.out.println("Will Log in");
-            } else {
-                invalid_register_err_msg.setVisible(true);
-            }
-            loaderpanel.setVisible(false);
-        }).start();
+       this.register();
     }//GEN-LAST:event_registerMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
+       this.login();
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
-        loaderpanel.setVisible(true);
-        invalid_credentials_err_msg.setVisible(false);
-        String email = login_email.getText();
-        String password = String.valueOf(login_password.getPassword());
-        User user_obj = new User();
-        user_obj.setLogin(email, password);
-        Gson gson = new Gson();
-        String json_user_data = gson.toJson(user_obj);
-        new Thread(() -> {
-            SQLdb connection = new SQLdb();
-            String[] login_status = connection.login(json_user_data);
-            if(login_status[0].equals("true")) {
-                System.out.println("Will Log in");
-            } else {
-                invalid_credentials_err_msg.setVisible(true);
-            }
-            System.out.println(String.valueOf(login_status));
-            loaderpanel.setVisible(false);
-        }).start();
+        this.login();
         
         // TODO add your handling code here:
     }//GEN-LAST:event_loginMouseClicked
+
+    private void login_passwordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_login_passwordMouseClicked
+
+    }//GEN-LAST:event_login_passwordMouseClicked
+
+    private void register_passwordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_register_passwordMouseClicked
+
+    }//GEN-LAST:event_register_passwordMouseClicked
+
+    private void register_nameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_register_nameFocusGained
+        if(register_name.getText().equals("Name")){
+        register_name.setText("");
+        register_name.setForeground(Color.WHITE);
+        }
+    }//GEN-LAST:event_register_nameFocusGained
+
+    private void register_nameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_register_nameFocusLost
+        if(register_name.getText().equals("")) {
+            register_name.setText("Name");
+            register_name.setForeground(Color.LIGHT_GRAY);
+        }
+    }//GEN-LAST:event_register_nameFocusLost
+
+    private void register_emailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_register_emailFocusGained
+        // TODO add your handling code here:
+        if(register_email.getText().equals("Email")) {
+            register_email.setText("");
+            register_email.setForeground(Color.WHITE);
+        }
+    }//GEN-LAST:event_register_emailFocusGained
+
+    private void register_emailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_register_emailFocusLost
+        // TODO add your handling code here:
+        if(register_email.getText().equals("")) {
+            register_email.setText("Email");
+            register_email.setForeground(Color.LIGHT_GRAY);
+        }
+    }//GEN-LAST:event_register_emailFocusLost
+
+    private void register_passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_register_passwordFocusGained
+        // TODO add your handling code here:
+        if(register_password.getText().equals("Password")) {
+        register_password.setText("");
+        register_password.setForeground(Color.WHITE);
+        }
+    }//GEN-LAST:event_register_passwordFocusGained
+
+    private void register_passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_register_passwordFocusLost
+        // TODO add your handling code here:
+        if(register_password.getText().equals("")) {
+            register_password.setText("Password");
+            register_password.setForeground(Color.LIGHT_GRAY);
+        }
+    }//GEN-LAST:event_register_passwordFocusLost
+
+    private void register_phoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_register_phoneFocusGained
+    // TODO add your handling code here:
+    if(register_phone.getText().equals("Phone")) {
+    register_phone.setText("");
+    register_phone.setForeground(Color.WHITE);
+    }
+    }//GEN-LAST:event_register_phoneFocusGained
+
+    private void register_phoneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_register_phoneFocusLost
+        // TODO add your handling code here:
+        if(register_phone.getText().equals("")) {
+            register_phone.setText("Phone");
+            register_phone.setForeground(Color.LIGHT_GRAY);
+        }
+    }//GEN-LAST:event_register_phoneFocusLost
+
+    private void login_emailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_login_emailFocusGained
+        // TODO add your handling code here:
+         if(login_email.getText().equals("Email")) {
+        login_email.setText("");
+        login_email.setForeground(Color.WHITE);
+         }
+    }//GEN-LAST:event_login_emailFocusGained
+
+    private void login_emailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_login_emailFocusLost
+        // TODO add your handling code here:
+        if(login_email.getText().equals("")) {
+            login_email.setText("Email");
+            login_email.setForeground(Color.LIGHT_GRAY);
+        }
+    }//GEN-LAST:event_login_emailFocusLost
+
+    private void login_passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_login_passwordFocusGained
+        if(login_password.getText().equals("Password")) {
+        login_password.setText("");
+        login_password.setForeground(Color.WHITE);
+        }
+    }//GEN-LAST:event_login_passwordFocusGained
+
+    private void login_passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_login_passwordFocusLost
+        // TODO add your handling code here:
+        if(login_password.getText().equals("")) {
+            login_password.setText("Password");
+            login_password.setForeground(Color.LIGHT_GRAY);
+        }
+    }//GEN-LAST:event_login_passwordFocusLost
+
+    private void register_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_register_labelMouseClicked
+        // TODO add your handling code here:
+        this.register();
+    }//GEN-LAST:event_register_labelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -533,4 +715,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPasswordField register_password;
     private javax.swing.JTextField register_phone;
     // End of variables declaration//GEN-END:variables
+
+    private Color Color(int i, int i0, int i1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
