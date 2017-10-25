@@ -5,6 +5,8 @@
  */
 package CarSales;
 
+import java.awt.Color;
+
 /**
  *
  * @author abhi
@@ -126,7 +128,7 @@ public class ProfileM extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(2, 2, 2)))
-                        .addGap(0, 9, Short.MAX_VALUE))
+                        .addGap(0, 5, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(logout_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(12, 12, 12)
@@ -152,18 +154,42 @@ public class ProfileM extends javax.swing.JFrame {
         name.setForeground(new java.awt.Color(255, 255, 255));
         name.setText("Name");
         name.setBorder(null);
+        name.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                nameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                nameFocusLost(evt);
+            }
+        });
 
         phone.setBackground(new java.awt.Color(58, 56, 77));
         phone.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         phone.setForeground(new java.awt.Color(255, 255, 255));
         phone.setText("Phone");
         phone.setBorder(null);
+        phone.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                phoneFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                phoneFocusLost(evt);
+            }
+        });
 
         pass.setBackground(new java.awt.Color(58, 56, 77));
         pass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         pass.setForeground(new java.awt.Color(255, 255, 255));
         pass.setText("***********");
         pass.setBorder(null);
+        pass.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                passFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                passFocusLost(evt);
+            }
+        });
 
         jPanel5.setBackground(new java.awt.Color(58, 56, 77));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(94, 237, 181)));
@@ -208,7 +234,7 @@ public class ProfileM extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(121, 121, 121)
                 .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -255,6 +281,53 @@ public class ProfileM extends javax.swing.JFrame {
         this.dispose();
 
     }//GEN-LAST:event_logout_labelMouseClicked
+
+    private void nameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFocusGained
+        // TODO add your handling code here:
+        if(name.getText().equals("Name")){
+            name.setText("");
+            name.setForeground(Color.WHITE);
+        }
+    }//GEN-LAST:event_nameFocusGained
+
+    private void nameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameFocusLost
+       if(name.getText().equals("")){
+            name.setText("Name");
+            name.setForeground(Color.LIGHT_GRAY);
+        }
+    }//GEN-LAST:event_nameFocusLost
+
+    private void passFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passFocusGained
+        // TODO add your handling code here:
+        if(pass.getText().equals("Password")){
+            pass.setText("");
+            pass.setForeground(Color.WHITE);
+        }
+    }//GEN-LAST:event_passFocusGained
+
+    private void passFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passFocusLost
+        // TODO add your handling code here:
+         if(pass.getText().equals("")){
+            pass.setText("Password");
+            pass.setForeground(Color.LIGHT_GRAY);
+        }
+    }//GEN-LAST:event_passFocusLost
+
+    private void phoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_phoneFocusGained
+        // TODO add your handling code here:
+        if(phone.getText().equals("Phone")){
+            phone.setText("");
+            phone.setForeground(Color.WHITE);
+        }
+    }//GEN-LAST:event_phoneFocusGained
+
+    private void phoneFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_phoneFocusLost
+        // TODO add your handling code here:
+         if(phone.getText().equals("")){
+            phone.setText("Phone");
+            phone.setForeground(Color.LIGHT_GRAY);
+        }
+    }//GEN-LAST:event_phoneFocusLost
 
     /**
      * @param args the command line arguments
