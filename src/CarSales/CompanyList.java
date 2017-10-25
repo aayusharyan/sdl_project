@@ -38,22 +38,61 @@ public class CompanyList extends javax.swing.JFrame {
         Gson gson = new Gson();
         String[][] company_data = gson.fromJson(company_json_data, String[][].class);
         for(String[] single_company : company_data) {
+            if(single_company[0] != null) {
             int single_company_id = Integer.parseInt(single_company[0]);
             int company_location = single_company_id%12;
+            Image image = new ImageIcon(this.getClass().getResource(single_company[2])).getImage();
             switch (company_location) {
                 case 1:
                     company_panel_1.setVisible(true);
-                    Image image = new ImageIcon(this.getClass().getResource(single_company[2])).getImage();
                     company_label_1.setIcon(new ImageIcon(image));
                     break;
                 case 2:
+                    company_panel_2.setVisible(true);
+                    company_label_2.setIcon(new ImageIcon(image));                    
                     break;
                 case 3:
+                    company_panel_3.setVisible(true);
+                    company_label_3.setIcon(new ImageIcon(image));
                     break;
                 case 4:
+                    company_panel_4.setVisible(true);
+                    company_label_4.setIcon(new ImageIcon(image));
+                    break;
+                case 5:
+                    company_panel_5.setVisible(true);
+                    company_label_5.setIcon(new ImageIcon(image));
+                    break;
+                case 6:
+                    company_panel_6.setVisible(true);
+                    company_label_6.setIcon(new ImageIcon(image));
+                    break;
+                case 7:
+                    company_panel_7.setVisible(true);
+                    company_label_7.setIcon(new ImageIcon(image));
+                    break;
+                case 8:
+                    company_panel_8.setVisible(true);
+                    company_label_8.setIcon(new ImageIcon(image));
+                    break;
+                case 9:
+                    company_panel_9.setVisible(true);
+                    company_label_9.setIcon(new ImageIcon(image));
+                    break;
+                case 10:
+                    company_panel_10.setVisible(true);
+                    company_label_10.setIcon(new ImageIcon(image));
+                    break;
+                case 11:
+                    company_panel_11.setVisible(true);
+                    company_label_11.setIcon(new ImageIcon(image));
+                    break;
+                case 12:
+                    company_panel_12.setVisible(true);
+                    company_label_12.setIcon(new ImageIcon(image));
                     break;
             }
-            break;
+            }
         }
     }
 
@@ -68,8 +107,8 @@ public class CompanyList extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        logout_label = new javax.swing.JPanel();
+        logout_textfield = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -106,27 +145,37 @@ public class CompanyList extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(38, 40, 55));
 
-        jPanel3.setBackground(new java.awt.Color(38, 40, 55));
-        jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(242, 109, 125), 1, true));
+        logout_label.setBackground(new java.awt.Color(38, 40, 55));
+        logout_label.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(242, 109, 125), 1, true));
+        logout_label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logout_labelMouseClicked(evt);
+            }
+        });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Logout");
+        logout_textfield.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        logout_textfield.setForeground(new java.awt.Color(255, 255, 255));
+        logout_textfield.setText("Logout");
+        logout_textfield.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logout_textfieldMouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout logout_labelLayout = new javax.swing.GroupLayout(logout_label);
+        logout_label.setLayout(logout_labelLayout);
+        logout_labelLayout.setHorizontalGroup(
+            logout_labelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(logout_labelLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(jLabel1)
+                .addComponent(logout_textfield)
                 .addContainerGap(52, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        logout_labelLayout.setVerticalGroup(
+            logout_labelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(logout_labelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                .addComponent(logout_textfield, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -169,7 +218,7 @@ public class CompanyList extends javax.swing.JFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(user_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(logout_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -183,7 +232,7 @@ public class CompanyList extends javax.swing.JFrame {
                 .addComponent(user_name)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(logout_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -447,6 +496,21 @@ public class CompanyList extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void logout_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logout_labelMouseClicked
+        // TODO add your handling code here:
+        Home h = new Home();
+        h.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_logout_labelMouseClicked
+
+    private void logout_textfieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logout_textfieldMouseClicked
+        // TODO add your handling code here:
+        Home h = new Home();
+        h.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logout_textfieldMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -508,13 +572,13 @@ public class CompanyList extends javax.swing.JFrame {
     private javax.swing.JPanel company_panel_7;
     private javax.swing.JPanel company_panel_8;
     private javax.swing.JPanel company_panel_9;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel logout_label;
+    private javax.swing.JLabel logout_textfield;
     private javax.swing.JLabel user_name;
     // End of variables declaration//GEN-END:variables
 }
