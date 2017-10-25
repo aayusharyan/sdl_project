@@ -102,11 +102,15 @@ public class SQLdb {
             Statement st;
             st = con.createStatement();
             int count = 0;
-            ResultSet re = st.executeQuery("SELECT * FROM cars WHERE `company_id`="+company_id+" OFFSET "+offset+" LIMIT"+limit);
+            String offset_statement = "";
+            if(offset > 0) {
+                offset_statement = " OFFSET "+offset+" ";
+            }
+            ResultSet re = st.executeQuery("SELECT * FROM cars WHERE `company_id`="+company_id+offset_statement+" LIMIT "+limit);
             while(re.next()){
                 rtrn[count][0] = re.getString("id");
                 rtrn[count][1] = re.getString("name");
-                rtrn[count][2] = re.getString("icon_url");
+                rtrn[count][2] = re.getString("icon");
                 rtrn[count][3] = re.getString("company_name");
                 count++;
             }
