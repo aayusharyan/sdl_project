@@ -144,6 +144,7 @@ public class ProfileM extends javax.swing.JFrame {
 
         jPanel8.setBackground(new java.awt.Color(38, 40, 55));
         jPanel8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
+        jPanel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/account.png"))); // NOI18N
 
@@ -164,6 +165,7 @@ public class ProfileM extends javax.swing.JFrame {
         back_btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         back_btn.setForeground(new java.awt.Color(255, 255, 255));
         back_btn.setText("⬅ Back");
+        back_btn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         back_btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 back_btnMouseClicked(evt);
