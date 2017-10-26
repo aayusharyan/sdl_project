@@ -192,6 +192,7 @@ public class Admin extends javax.swing.JFrame {
         Jpanel_user.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Jpanel_user.setForeground(new java.awt.Color(255, 255, 255));
         Jpanel_user.setText("Users");
+        Jpanel_user.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Jpanel_user.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Jpanel_userMouseClicked(evt);
@@ -499,6 +500,7 @@ public class Admin extends javax.swing.JFrame {
         });
 
         prev_page_icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/left-chevron.png"))); // NOI18N
+        prev_page_icon1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         prev_page_icon1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 prev_page_icon1MouseClicked(evt);
@@ -528,6 +530,7 @@ public class Admin extends javax.swing.JFrame {
         });
 
         next_page_icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/right-chevron.png"))); // NOI18N
+        next_page_icon1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         next_page_icon1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 next_page_icon1MouseClicked(evt);
