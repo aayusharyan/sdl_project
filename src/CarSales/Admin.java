@@ -45,6 +45,7 @@ public class Admin extends javax.swing.JFrame {
             String orders_json_str = connection.getPurchases(offset, limit);
             Gson gson = new Gson();
             String[][] orders_data = gson.fromJson(orders_json_str, String[][].class);
+            int count = 0;
             for(String[] single_order : orders_data) {
                 if(single_order[0] != null) {
                     int single_order_id = Integer.parseInt(single_order[0]);
@@ -58,40 +59,42 @@ public class Admin extends javax.swing.JFrame {
                     String car_details_str = connection.getCarDetails(car_id);
                     String[] car_data = gson.fromJson(car_details_str, String[].class);
                     
-                    switch (order_location) {
+                    switch (count) {
                         case 0:
                             order_1_panel.setVisible(true);
+                            order_1_id.setText(String.valueOf(single_order_id));
                             order_1_car_name.setText(car_data[1]);
                             order_1_user_name.setText(purchase_user_data[1]);
                         break;
                         case 1:
                             order_2_panel.setVisible(true);
+                            order_2_id.setText(String.valueOf(single_order_id));
                             order_2_car_name.setText(car_data[1]);
                             order_2_user_name.setText(purchase_user_data[1]);
                         break;
                         case 2:
                             order_3_panel.setVisible(true);
+                            order_3_id.setText(String.valueOf(single_order_id));
                             order_3_car_name.setText(car_data[1]);
                             order_3_user_name.setText(purchase_user_data[1]);
                         break;
                         case 3:
                             order_4_panel.setVisible(true);
+                            order_4_id.setText(String.valueOf(single_order_id));
                             order_4_car_name.setText(car_data[1]);
                             order_4_user_name.setText(purchase_user_data[1]);
                         break;
                         case 4:
                             order_5_panel.setVisible(true);
+                            order_5_id.setText(String.valueOf(single_order_id));
                             order_5_car_name.setText(car_data[1]);
                             order_5_user_name.setText(purchase_user_data[1]);
                         break;
                         
                     }
+                    count++;
                 }
             }
-//            
-//            String user_obj_json = connection.getUserDetails(this.user_id);
-//            String[] user_details = gson.fromJson(user_obj_json, String[].class);
-//            user_name.setText(user_details[1]);
             
             if(offset > 0) {
                 prev_page_panel.setVisible(true);
@@ -102,6 +105,7 @@ public class Admin extends javax.swing.JFrame {
             if(remaining_items > 0) {
                 next_page_panel.setVisible(true);
             }
+            loaderpanel.setVisible(false);
         }).start();
     }
 
@@ -116,6 +120,8 @@ public class Admin extends javax.swing.JFrame {
 
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
+        loaderpanel = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel_orders = new javax.swing.JLabel();
         Jpanel_user = new javax.swing.JLabel();
         logout_label = new javax.swing.JPanel();
@@ -125,22 +131,27 @@ public class Admin extends javax.swing.JFrame {
         order_1_icon = new javax.swing.JLabel();
         order_1_user_name = new javax.swing.JLabel();
         order_1_car_name = new javax.swing.JLabel();
+        order_1_id = new javax.swing.JLabel();
         order_2_panel = new javax.swing.JPanel();
         order_2_icon = new javax.swing.JLabel();
         order_2_user_name = new javax.swing.JLabel();
         order_2_car_name = new javax.swing.JLabel();
+        order_2_id = new javax.swing.JLabel();
         order_3_panel = new javax.swing.JPanel();
         order_3_icon = new javax.swing.JLabel();
         order_3_user_name = new javax.swing.JLabel();
         order_3_car_name = new javax.swing.JLabel();
+        order_3_id = new javax.swing.JLabel();
         order_4_panel = new javax.swing.JPanel();
         order_4_icon = new javax.swing.JLabel();
         order_4_user_name = new javax.swing.JLabel();
         order_4_car_name = new javax.swing.JLabel();
+        order_4_id = new javax.swing.JLabel();
         order_5_panel = new javax.swing.JPanel();
         order_5_icon = new javax.swing.JLabel();
         order_5_user_name = new javax.swing.JLabel();
         order_5_car_name = new javax.swing.JLabel();
+        order_5_id = new javax.swing.JLabel();
         jPanel22 = new javax.swing.JPanel();
         prev_page_panel = new javax.swing.JPanel();
         prev_page_icon1 = new javax.swing.JLabel();
@@ -153,6 +164,26 @@ public class Admin extends javax.swing.JFrame {
         jPanel3.setPreferredSize(new java.awt.Dimension(800, 440));
 
         jPanel4.setBackground(new java.awt.Color(38, 40, 55));
+
+        loaderpanel.setBackground(new java.awt.Color(38, 40, 55));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/animations/91.gif"))); // NOI18N
+
+        javax.swing.GroupLayout loaderpanelLayout = new javax.swing.GroupLayout(loaderpanel);
+        loaderpanel.setLayout(loaderpanelLayout);
+        loaderpanelLayout.setHorizontalGroup(
+            loaderpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loaderpanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel4))
+        );
+        loaderpanelLayout.setVerticalGroup(
+            loaderpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loaderpanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         jLabel_orders.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel_orders.setForeground(new java.awt.Color(255, 255, 255));
@@ -204,13 +235,18 @@ public class Admin extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logout_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Jpanel_user, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel_orders, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel_orders, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(loaderpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(129, 129, 129)
+                .addContainerGap()
+                .addComponent(loaderpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
                 .addComponent(jLabel_orders, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Jpanel_user, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -235,6 +271,10 @@ public class Admin extends javax.swing.JFrame {
         order_1_car_name.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         order_1_car_name.setText("Car Name");
 
+        order_1_id.setFont(new java.awt.Font("Thonburi", 0, 14)); // NOI18N
+        order_1_id.setForeground(new java.awt.Color(255, 255, 255));
+        order_1_id.setText("ID");
+
         javax.swing.GroupLayout order_1_panelLayout = new javax.swing.GroupLayout(order_1_panel);
         order_1_panel.setLayout(order_1_panelLayout);
         order_1_panelLayout.setHorizontalGroup(
@@ -243,20 +283,22 @@ public class Admin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(order_1_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(order_1_user_name, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(order_1_car_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(order_1_id, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(order_1_user_name, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(order_1_car_name, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         order_1_panelLayout.setVerticalGroup(
             order_1_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(order_1_icon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, order_1_panelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(order_1_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(order_1_panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(order_1_car_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(order_1_user_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(order_1_id, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(order_1_user_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(order_1_car_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -274,6 +316,10 @@ public class Admin extends javax.swing.JFrame {
         order_2_car_name.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         order_2_car_name.setText("Car Name");
 
+        order_2_id.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        order_2_id.setForeground(new java.awt.Color(255, 255, 255));
+        order_2_id.setText("ID");
+
         javax.swing.GroupLayout order_2_panelLayout = new javax.swing.GroupLayout(order_2_panel);
         order_2_panel.setLayout(order_2_panelLayout);
         order_2_panelLayout.setHorizontalGroup(
@@ -282,20 +328,22 @@ public class Admin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(order_2_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(order_2_user_name, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(order_2_car_name, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                .addComponent(order_2_id, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(order_2_user_name, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(order_2_car_name, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         order_2_panelLayout.setVerticalGroup(
             order_2_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(order_2_icon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, order_2_panelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(order_2_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(order_2_panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(order_2_car_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(order_2_user_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(order_2_id, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(order_2_user_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(order_2_car_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -313,6 +361,10 @@ public class Admin extends javax.swing.JFrame {
         order_3_car_name.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         order_3_car_name.setText("Car Name");
 
+        order_3_id.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        order_3_id.setForeground(new java.awt.Color(255, 255, 255));
+        order_3_id.setText("ID");
+
         javax.swing.GroupLayout order_3_panelLayout = new javax.swing.GroupLayout(order_3_panel);
         order_3_panel.setLayout(order_3_panelLayout);
         order_3_panelLayout.setHorizontalGroup(
@@ -321,20 +373,22 @@ public class Admin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(order_3_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(order_3_user_name, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(order_3_car_name, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                .addComponent(order_3_id, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(order_3_user_name, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(order_3_car_name, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         order_3_panelLayout.setVerticalGroup(
             order_3_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(order_3_icon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, order_3_panelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(order_3_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(order_3_panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(order_3_car_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(order_3_user_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(order_3_id, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(order_3_user_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(order_3_car_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -352,6 +406,10 @@ public class Admin extends javax.swing.JFrame {
         order_4_car_name.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         order_4_car_name.setText("Car Name");
 
+        order_4_id.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        order_4_id.setForeground(new java.awt.Color(255, 255, 255));
+        order_4_id.setText("ID");
+
         javax.swing.GroupLayout order_4_panelLayout = new javax.swing.GroupLayout(order_4_panel);
         order_4_panel.setLayout(order_4_panelLayout);
         order_4_panelLayout.setHorizontalGroup(
@@ -360,20 +418,22 @@ public class Admin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(order_4_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(order_4_user_name, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(order_4_car_name, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                .addComponent(order_4_id, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(order_4_user_name, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(order_4_car_name, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         order_4_panelLayout.setVerticalGroup(
             order_4_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(order_4_icon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, order_4_panelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(order_4_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(order_4_panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(order_4_car_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(order_4_user_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(order_4_id, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(order_4_user_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(order_4_car_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -391,6 +451,10 @@ public class Admin extends javax.swing.JFrame {
         order_5_car_name.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         order_5_car_name.setText("Car Name");
 
+        order_5_id.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        order_5_id.setForeground(new java.awt.Color(255, 255, 255));
+        order_5_id.setText("ID");
+
         javax.swing.GroupLayout order_5_panelLayout = new javax.swing.GroupLayout(order_5_panel);
         order_5_panel.setLayout(order_5_panelLayout);
         order_5_panelLayout.setHorizontalGroup(
@@ -399,20 +463,22 @@ public class Admin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(order_5_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(order_5_user_name, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(order_5_car_name, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                .addComponent(order_5_id, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(order_5_user_name, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(order_5_car_name, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         order_5_panelLayout.setVerticalGroup(
             order_5_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(order_5_icon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, order_5_panelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(order_5_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(order_5_panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(order_5_car_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(order_5_user_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(order_5_id, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(order_5_user_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(order_5_car_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -622,40 +688,47 @@ public class Admin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Admin(0,-1).setVisible(true);
+                new Admin(0,1).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Jpanel_user;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel_orders;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel loaderpanel;
     private javax.swing.JPanel logout_label;
     private javax.swing.JLabel logout_textfield;
     private javax.swing.JLabel next_page_icon1;
     private javax.swing.JPanel next_page_panel;
     private javax.swing.JLabel order_1_car_name;
     private javax.swing.JLabel order_1_icon;
+    private javax.swing.JLabel order_1_id;
     private javax.swing.JPanel order_1_panel;
     private javax.swing.JLabel order_1_user_name;
     private javax.swing.JLabel order_2_car_name;
     private javax.swing.JLabel order_2_icon;
+    private javax.swing.JLabel order_2_id;
     private javax.swing.JPanel order_2_panel;
     private javax.swing.JLabel order_2_user_name;
     private javax.swing.JLabel order_3_car_name;
     private javax.swing.JLabel order_3_icon;
+    private javax.swing.JLabel order_3_id;
     private javax.swing.JPanel order_3_panel;
     private javax.swing.JLabel order_3_user_name;
     private javax.swing.JLabel order_4_car_name;
     private javax.swing.JLabel order_4_icon;
+    private javax.swing.JLabel order_4_id;
     private javax.swing.JPanel order_4_panel;
     private javax.swing.JLabel order_4_user_name;
     private javax.swing.JLabel order_5_car_name;
     private javax.swing.JLabel order_5_icon;
+    private javax.swing.JLabel order_5_id;
     private javax.swing.JPanel order_5_panel;
     private javax.swing.JLabel order_5_user_name;
     private javax.swing.JLabel prev_page_icon1;
