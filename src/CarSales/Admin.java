@@ -64,6 +64,27 @@ public class Admin extends javax.swing.JFrame {
                             order_1_car_name.setText(car_data[1]);
                             order_1_user_name.setText(purchase_user_data[1]);
                         break;
+                        case 1:
+                            order_2_panel.setVisible(true);
+                            order_2_car_name.setText(car_data[1]);
+                            order_2_user_name.setText(purchase_user_data[1]);
+                        break;
+                        case 2:
+                            order_3_panel.setVisible(true);
+                            order_3_car_name.setText(car_data[1]);
+                            order_3_user_name.setText(purchase_user_data[1]);
+                        break;
+                        case 3:
+                            order_4_panel.setVisible(true);
+                            order_4_car_name.setText(car_data[1]);
+                            order_4_user_name.setText(purchase_user_data[1]);
+                        break;
+                        case 4:
+                            order_5_panel.setVisible(true);
+                            order_5_car_name.setText(car_data[1]);
+                            order_5_user_name.setText(purchase_user_data[1]);
+                        break;
+                        
                     }
                 }
             }

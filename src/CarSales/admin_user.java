@@ -62,6 +62,37 @@ public class admin_user extends javax.swing.JFrame {
                             user_1_email.setText(single_user_email);
                             user_1_phone.setText(single_user_phone);
                         break;
+                        case 1:
+                            user_2_panel.setVisible(true);
+                            user_2_name.setText(single_user_name);
+                            user_2_email.setText(single_user_email);
+                            user_2_phone.setText(single_user_phone);
+                        break;
+                        case 2:
+                            user_3_panel.setVisible(true);
+                            user_3_name.setText(single_user_name);
+                            user_3_email.setText(single_user_email);
+                            user_3_phone.setText(single_user_phone);
+                        break;
+                        case 3:
+                            user_4_panel.setVisible(true);
+                            user_4_name.setText(single_user_name);
+                            user_4_email.setText(single_user_email);
+                            user_4_phone.setText(single_user_phone);
+                        break;
+                        case 4:
+                            user_5_panel.setVisible(true);
+                            user_5_name.setText(single_user_name);
+                            user_5_email.setText(single_user_email);
+                            user_5_phone.setText(single_user_phone);
+                        break;
+                        case 5:
+                            user_6_panel.setVisible(true);
+                            user_6_name.setText(single_user_name);
+                            user_6_email.setText(single_user_email);
+                            user_6_phone.setText(single_user_phone);
+                        break;
+                        
                     }
                 }
             }
