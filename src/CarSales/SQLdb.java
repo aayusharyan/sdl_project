@@ -254,7 +254,7 @@ public class SQLdb {
             if(offset > 0) {
                 offset_statement = " OFFSET "+offset+" ";
             }
-            ResultSet re = st.executeQuery("SELECT * FROM carsales ORDER BY Id DESC LIMIT "+limit+offset_statement);
+            ResultSet re = st.executeQuery("SELECT * FROM carsales WHERE `type` != 'admin' ORDER BY Id DESC LIMIT "+limit+offset_statement);
             while(re.next()){
                 rtrn[count][0] = re.getString("Id");
                 rtrn[count][1] = re.getString("Name");
@@ -305,7 +305,7 @@ public class SQLdb {
             // TODO add your handling code here:
             Statement st;
             st = con.createStatement();
-            ResultSet re = st.executeQuery("SELECT COUNT(*) AS total FROM carsales");
+            ResultSet re = st.executeQuery("SELECT COUNT(*) AS total FROM carsales WHERE `type` != 'admin'");
             while(re.next()){
                 total_elems = Integer.parseInt(re.getString("total"));
             }
