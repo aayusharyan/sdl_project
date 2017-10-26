@@ -185,9 +185,14 @@ public class admin_user extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Orders");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(94, 237, 181));
         jLabel3.setText("User");
 
         logout_label.setBackground(new java.awt.Color(38, 40, 55));
@@ -739,6 +744,12 @@ public class admin_user extends javax.swing.JFrame {
     private void next_page_panelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_next_page_panelMouseClicked
         changePage(this.page_id+1);
     }//GEN-LAST:event_next_page_panelMouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        Admin admin = new Admin(this.user_id, 1);
+        admin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
