@@ -6,8 +6,10 @@
 package CarSales;
 
 import com.google.gson.Gson;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -40,6 +42,8 @@ public class CarDetails extends javax.swing.JFrame {
             
             ArrayList car_data_al = new ArrayList<>(Arrays.asList(car_data));
             
+            Image car_image = new ImageIcon(this.getClass().getResource(car_data_al.get(4).toString())).getImage();
+            car_image_label.setIcon(new ImageIcon(car_image));
             car_name_label.setText(car_data_al.get(1).toString());
             car_company_label.setText(car_data_al.get(3).toString());
             car_price.setText("Price: "+car_data_al.get(5).toString());
