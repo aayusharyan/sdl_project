@@ -244,6 +244,7 @@ public class CompanyList extends javax.swing.JFrame {
         });
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/account.png"))); // NOI18N
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel7MouseClicked(evt);
@@ -336,6 +337,7 @@ public class CompanyList extends javax.swing.JFrame {
         companyLogoViewPanel.setBackground(new java.awt.Color(58, 56, 77));
 
         company_label_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/logos/lo2.PNG"))); // NOI18N
+        company_label_1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout company_panel_1Layout = new javax.swing.GroupLayout(company_panel_1);
         company_panel_1.setLayout(company_panel_1Layout);
@@ -349,6 +351,7 @@ public class CompanyList extends javax.swing.JFrame {
         );
 
         company_label_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/logos/lo2.PNG"))); // NOI18N
+        company_label_2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout company_panel_2Layout = new javax.swing.GroupLayout(company_panel_2);
         company_panel_2.setLayout(company_panel_2Layout);
@@ -362,6 +365,7 @@ public class CompanyList extends javax.swing.JFrame {
         );
 
         company_label_3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/logos/lo2.PNG"))); // NOI18N
+        company_label_3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout company_panel_3Layout = new javax.swing.GroupLayout(company_panel_3);
         company_panel_3.setLayout(company_panel_3Layout);
@@ -375,6 +379,7 @@ public class CompanyList extends javax.swing.JFrame {
         );
 
         company_label_4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/logos/lo2.PNG"))); // NOI18N
+        company_label_4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout company_panel_4Layout = new javax.swing.GroupLayout(company_panel_4);
         company_panel_4.setLayout(company_panel_4Layout);
@@ -388,6 +393,7 @@ public class CompanyList extends javax.swing.JFrame {
         );
 
         company_label_5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/logos/lo2.PNG"))); // NOI18N
+        company_label_5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout company_panel_5Layout = new javax.swing.GroupLayout(company_panel_5);
         company_panel_5.setLayout(company_panel_5Layout);
@@ -401,6 +407,7 @@ public class CompanyList extends javax.swing.JFrame {
         );
 
         company_label_6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/logos/lo2.PNG"))); // NOI18N
+        company_label_6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout company_panel_6Layout = new javax.swing.GroupLayout(company_panel_6);
         company_panel_6.setLayout(company_panel_6Layout);
@@ -414,6 +421,7 @@ public class CompanyList extends javax.swing.JFrame {
         );
 
         company_label_7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/logos/lo2.PNG"))); // NOI18N
+        company_label_7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout company_panel_7Layout = new javax.swing.GroupLayout(company_panel_7);
         company_panel_7.setLayout(company_panel_7Layout);
@@ -427,6 +435,7 @@ public class CompanyList extends javax.swing.JFrame {
         );
 
         company_label_8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/logos/lo2.PNG"))); // NOI18N
+        company_label_8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout company_panel_8Layout = new javax.swing.GroupLayout(company_panel_8);
         company_panel_8.setLayout(company_panel_8Layout);
@@ -440,6 +449,7 @@ public class CompanyList extends javax.swing.JFrame {
         );
 
         company_label_9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/logos/lo2.PNG"))); // NOI18N
+        company_label_9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout company_panel_9Layout = new javax.swing.GroupLayout(company_panel_9);
         company_panel_9.setLayout(company_panel_9Layout);
