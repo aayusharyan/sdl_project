@@ -186,12 +186,17 @@ public class Admin extends javax.swing.JFrame {
         );
 
         jLabel_orders.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel_orders.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_orders.setForeground(new java.awt.Color(94, 237, 181));
         jLabel_orders.setText("Orders");
 
         Jpanel_user.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Jpanel_user.setForeground(new java.awt.Color(255, 255, 255));
         Jpanel_user.setText("User");
+        Jpanel_user.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Jpanel_userMouseClicked(evt);
+            }
+        });
 
         logout_label.setBackground(new java.awt.Color(38, 40, 55));
         logout_label.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(242, 109, 125), 1, true));
@@ -656,6 +661,12 @@ public class Admin extends javax.swing.JFrame {
     private void prev_page_icon1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prev_page_icon1MouseClicked
         changePage(this.page_id-1);
     }//GEN-LAST:event_prev_page_icon1MouseClicked
+
+    private void Jpanel_userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Jpanel_userMouseClicked
+        admin_user au = new admin_user(this.user_id, 1);
+        au.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_Jpanel_userMouseClicked
 
     /**
      * @param args the command line arguments
