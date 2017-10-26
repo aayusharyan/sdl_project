@@ -5,6 +5,8 @@
  */
 package CarSales;
 
+import com.google.gson.Gson;
+
 /**
  *
  * @author aksha
@@ -14,8 +16,37 @@ public class admin_user extends javax.swing.JFrame {
     /**
      * Creates new form admin_user
      */
-    public admin_user() {
+    public admin_user(int user_id, int page_id) {
         initComponents();
+            
+            int limit = 6;
+            int offset = 0;
+            if(page_id > 1) {
+                offset = ((page_id-1)*limit);
+            }
+            SQLdb connection = new SQLdb();
+            String users_data_json = connection.getUsers(offset, limit);
+            Gson gson = new Gson();
+            String[][] users_data = gson.fromJson(users_data_json, String[][].class);
+            for(String[] single_user : users_data) {
+                if(single_user[0] != null) {
+                    int single_user_id = Integer.parseInt(single_user[0]);
+                    int user_location = (single_user_id-1)%6;
+                    
+                    String single_user_name = single_user[1];
+                    String single_user_email = single_user[2];
+                    String single_user_phone = single_user[3];
+                    
+                    switch (user_location) {
+                        case 0:
+                            user_1_panel.setVisible(true);
+                            user_1_name.setText(single_user_name);
+                            user_1_email.setText(single_user_email);
+                            user_1_phone.setText(single_user_phone);
+                        break;
+                    }
+                }
+            }
     }
 
     /**
@@ -34,41 +65,41 @@ public class admin_user extends javax.swing.JFrame {
         logout_label = new javax.swing.JPanel();
         logout_textfield = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        cars_panel_10 = new javax.swing.JPanel();
-        cars_panel_2_icon8 = new javax.swing.JLabel();
-        Jpanel_username1 = new javax.swing.JLabel();
-        Jpanel_email_1 = new javax.swing.JLabel();
-        jPanel16 = new javax.swing.JPanel();
-        phone_no_1 = new javax.swing.JLabel();
+        user_1_panel = new javax.swing.JPanel();
+        user_1_icon = new javax.swing.JLabel();
+        user_1_name = new javax.swing.JLabel();
+        user_1_email = new javax.swing.JLabel();
+        user_1_phone = new javax.swing.JLabel();
+        user_1_panel1 = new javax.swing.JPanel();
+        user_1_icon1 = new javax.swing.JLabel();
+        user_1_name1 = new javax.swing.JLabel();
+        user_1_email1 = new javax.swing.JLabel();
+        user_1_phone1 = new javax.swing.JLabel();
+        user_1_panel2 = new javax.swing.JPanel();
+        user_1_icon2 = new javax.swing.JLabel();
+        user_1_name2 = new javax.swing.JLabel();
+        user_1_email2 = new javax.swing.JLabel();
+        user_1_phone2 = new javax.swing.JLabel();
+        user_1_panel3 = new javax.swing.JPanel();
+        user_1_icon3 = new javax.swing.JLabel();
+        user_1_name3 = new javax.swing.JLabel();
+        user_1_email3 = new javax.swing.JLabel();
+        user_1_phone3 = new javax.swing.JLabel();
+        user_1_panel4 = new javax.swing.JPanel();
+        user_1_icon4 = new javax.swing.JLabel();
+        user_1_name4 = new javax.swing.JLabel();
+        user_1_email4 = new javax.swing.JLabel();
+        user_1_phone4 = new javax.swing.JLabel();
+        user_1_panel5 = new javax.swing.JPanel();
+        user_1_icon5 = new javax.swing.JLabel();
+        user_1_name5 = new javax.swing.JLabel();
+        user_1_email5 = new javax.swing.JLabel();
+        user_1_phone5 = new javax.swing.JLabel();
         jPanel22 = new javax.swing.JPanel();
         prev_page_panel1 = new javax.swing.JPanel();
         prev_page_icon1 = new javax.swing.JLabel();
         next_page_panel1 = new javax.swing.JPanel();
         next_page_icon1 = new javax.swing.JLabel();
-        cars_panel_13 = new javax.swing.JPanel();
-        cars_panel_2_icon11 = new javax.swing.JLabel();
-        Jpanel_username2 = new javax.swing.JLabel();
-        Jpanel_email_2 = new javax.swing.JLabel();
-        jPanel23 = new javax.swing.JPanel();
-        phone_no_2 = new javax.swing.JLabel();
-        cars_panel_14 = new javax.swing.JPanel();
-        cars_panel_2_icon12 = new javax.swing.JLabel();
-        cars_panel_2_name3 = new javax.swing.JLabel();
-        Jpanel_email_3 = new javax.swing.JLabel();
-        phone_no_3 = new javax.swing.JPanel();
-        cars_panel_2_view_more5 = new javax.swing.JLabel();
-        cars_panel_15 = new javax.swing.JPanel();
-        cars_panel_2_icon13 = new javax.swing.JLabel();
-        Jpanel_username4 = new javax.swing.JLabel();
-        Jpanel_email_4 = new javax.swing.JLabel();
-        jPanel25 = new javax.swing.JPanel();
-        phone_no_4 = new javax.swing.JLabel();
-        Jpanel_username5 = new javax.swing.JPanel();
-        cars_panel_2_icon14 = new javax.swing.JLabel();
-        cars_panel_2_name14 = new javax.swing.JLabel();
-        Jpanel_email_5 = new javax.swing.JLabel();
-        jPanel27 = new javax.swing.JPanel();
-        phone_no_5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,7 +142,7 @@ public class admin_user extends javax.swing.JFrame {
             .addGroup(logout_labelLayout.createSequentialGroup()
                 .addGap(77, 77, 77)
                 .addComponent(logout_textfield)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         logout_labelLayout.setVerticalGroup(
             logout_labelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,81 +168,286 @@ public class admin_user extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
                 .addComponent(logout_label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jPanel5.setBackground(new java.awt.Color(58, 56, 77));
 
-        cars_panel_10.setBackground(new java.awt.Color(58, 56, 77));
-        cars_panel_10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
+        user_1_panel.setBackground(new java.awt.Color(58, 56, 77));
+        user_1_panel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
 
-        cars_panel_2_icon8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/car-jeep.png"))); // NOI18N
+        user_1_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/car-jeep.png"))); // NOI18N
 
-        Jpanel_username1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        Jpanel_username1.setForeground(new java.awt.Color(255, 255, 255));
-        Jpanel_username1.setText("User Name");
+        user_1_name.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        user_1_name.setForeground(new java.awt.Color(255, 255, 255));
+        user_1_name.setText("User Name");
 
-        Jpanel_email_1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Jpanel_email_1.setForeground(new java.awt.Color(255, 255, 255));
-        Jpanel_email_1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        Jpanel_email_1.setText("Email");
+        user_1_email.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        user_1_email.setForeground(new java.awt.Color(255, 255, 255));
+        user_1_email.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        user_1_email.setText("Email");
 
-        jPanel16.setBackground(new java.awt.Color(58, 56, 77));
+        user_1_phone.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        user_1_phone.setForeground(new java.awt.Color(255, 255, 255));
+        user_1_phone.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        user_1_phone.setText("Phone No");
+        user_1_phone.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        phone_no_1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        phone_no_1.setForeground(new java.awt.Color(255, 255, 255));
-        phone_no_1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        phone_no_1.setText("Phone No");
-        phone_no_1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
-        jPanel16.setLayout(jPanel16Layout);
-        jPanel16Layout.setHorizontalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(phone_no_1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout user_1_panelLayout = new javax.swing.GroupLayout(user_1_panel);
+        user_1_panel.setLayout(user_1_panelLayout);
+        user_1_panelLayout.setHorizontalGroup(
+            user_1_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(user_1_panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(user_1_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user_1_name, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user_1_email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user_1_phone, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jPanel16Layout.setVerticalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(phone_no_1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        user_1_panelLayout.setVerticalGroup(
+            user_1_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(user_1_icon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+            .addComponent(user_1_phone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, user_1_panelLayout.createSequentialGroup()
+                .addGroup(user_1_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(user_1_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(user_1_email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(1, 1, 1))
         );
 
-        javax.swing.GroupLayout cars_panel_10Layout = new javax.swing.GroupLayout(cars_panel_10);
-        cars_panel_10.setLayout(cars_panel_10Layout);
-        cars_panel_10Layout.setHorizontalGroup(
-            cars_panel_10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cars_panel_10Layout.createSequentialGroup()
+        user_1_panel1.setBackground(new java.awt.Color(58, 56, 77));
+        user_1_panel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
+
+        user_1_icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/car-jeep.png"))); // NOI18N
+
+        user_1_name1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        user_1_name1.setForeground(new java.awt.Color(255, 255, 255));
+        user_1_name1.setText("User Name");
+
+        user_1_email1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        user_1_email1.setForeground(new java.awt.Color(255, 255, 255));
+        user_1_email1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        user_1_email1.setText("Email");
+
+        user_1_phone1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        user_1_phone1.setForeground(new java.awt.Color(255, 255, 255));
+        user_1_phone1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        user_1_phone1.setText("Phone No");
+        user_1_phone1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout user_1_panel1Layout = new javax.swing.GroupLayout(user_1_panel1);
+        user_1_panel1.setLayout(user_1_panel1Layout);
+        user_1_panel1Layout.setHorizontalGroup(
+            user_1_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(user_1_panel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cars_panel_2_icon8, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Jpanel_username1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(Jpanel_email_1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77))
+                .addComponent(user_1_icon1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user_1_name1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user_1_email1, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user_1_phone1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
-        cars_panel_10Layout.setVerticalGroup(
-            cars_panel_10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cars_panel_2_icon8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(cars_panel_10Layout.createSequentialGroup()
+        user_1_panel1Layout.setVerticalGroup(
+            user_1_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(user_1_icon1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+            .addComponent(user_1_phone1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, user_1_panel1Layout.createSequentialGroup()
+                .addGroup(user_1_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(user_1_email1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(user_1_name1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(1, 1, 1))
+        );
+
+        user_1_panel2.setBackground(new java.awt.Color(58, 56, 77));
+        user_1_panel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
+
+        user_1_icon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/car-jeep.png"))); // NOI18N
+
+        user_1_name2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        user_1_name2.setForeground(new java.awt.Color(255, 255, 255));
+        user_1_name2.setText("User Name");
+
+        user_1_email2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        user_1_email2.setForeground(new java.awt.Color(255, 255, 255));
+        user_1_email2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        user_1_email2.setText("Email");
+
+        user_1_phone2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        user_1_phone2.setForeground(new java.awt.Color(255, 255, 255));
+        user_1_phone2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        user_1_phone2.setText("Phone No");
+        user_1_phone2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout user_1_panel2Layout = new javax.swing.GroupLayout(user_1_panel2);
+        user_1_panel2.setLayout(user_1_panel2Layout);
+        user_1_panel2Layout.setHorizontalGroup(
+            user_1_panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(user_1_panel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(cars_panel_10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cars_panel_10Layout.createSequentialGroup()
-                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cars_panel_10Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(cars_panel_10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Jpanel_username1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Jpanel_email_1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addComponent(user_1_icon2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user_1_name2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user_1_email2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user_1_phone2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        user_1_panel2Layout.setVerticalGroup(
+            user_1_panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(user_1_icon2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+            .addComponent(user_1_phone2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, user_1_panel2Layout.createSequentialGroup()
+                .addGroup(user_1_panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(user_1_email2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(user_1_name2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(1, 1, 1))
+        );
+
+        user_1_panel3.setBackground(new java.awt.Color(58, 56, 77));
+        user_1_panel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
+
+        user_1_icon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/car-jeep.png"))); // NOI18N
+
+        user_1_name3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        user_1_name3.setForeground(new java.awt.Color(255, 255, 255));
+        user_1_name3.setText("User Name");
+
+        user_1_email3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        user_1_email3.setForeground(new java.awt.Color(255, 255, 255));
+        user_1_email3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        user_1_email3.setText("Email");
+
+        user_1_phone3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        user_1_phone3.setForeground(new java.awt.Color(255, 255, 255));
+        user_1_phone3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        user_1_phone3.setText("Phone No");
+        user_1_phone3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout user_1_panel3Layout = new javax.swing.GroupLayout(user_1_panel3);
+        user_1_panel3.setLayout(user_1_panel3Layout);
+        user_1_panel3Layout.setHorizontalGroup(
+            user_1_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(user_1_panel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(user_1_icon3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user_1_name3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user_1_email3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user_1_phone3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        user_1_panel3Layout.setVerticalGroup(
+            user_1_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(user_1_icon3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+            .addComponent(user_1_phone3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, user_1_panel3Layout.createSequentialGroup()
+                .addComponent(user_1_name3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(1, 1, 1))
+            .addComponent(user_1_email3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        user_1_panel4.setBackground(new java.awt.Color(58, 56, 77));
+        user_1_panel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
+
+        user_1_icon4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/car-jeep.png"))); // NOI18N
+
+        user_1_name4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        user_1_name4.setForeground(new java.awt.Color(255, 255, 255));
+        user_1_name4.setText("User Name");
+
+        user_1_email4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        user_1_email4.setForeground(new java.awt.Color(255, 255, 255));
+        user_1_email4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        user_1_email4.setText("Email");
+
+        user_1_phone4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        user_1_phone4.setForeground(new java.awt.Color(255, 255, 255));
+        user_1_phone4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        user_1_phone4.setText("Phone No");
+        user_1_phone4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout user_1_panel4Layout = new javax.swing.GroupLayout(user_1_panel4);
+        user_1_panel4.setLayout(user_1_panel4Layout);
+        user_1_panel4Layout.setHorizontalGroup(
+            user_1_panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(user_1_panel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(user_1_icon4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user_1_name4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user_1_email4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user_1_phone4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        user_1_panel4Layout.setVerticalGroup(
+            user_1_panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(user_1_icon4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+            .addComponent(user_1_phone4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, user_1_panel4Layout.createSequentialGroup()
+                .addGroup(user_1_panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(user_1_email4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(user_1_name4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(1, 1, 1))
+        );
+
+        user_1_panel5.setBackground(new java.awt.Color(58, 56, 77));
+        user_1_panel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
+
+        user_1_icon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/car-jeep.png"))); // NOI18N
+
+        user_1_name5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        user_1_name5.setForeground(new java.awt.Color(255, 255, 255));
+        user_1_name5.setText("User Name");
+
+        user_1_email5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        user_1_email5.setForeground(new java.awt.Color(255, 255, 255));
+        user_1_email5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        user_1_email5.setText("Email");
+
+        user_1_phone5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        user_1_phone5.setForeground(new java.awt.Color(255, 255, 255));
+        user_1_phone5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        user_1_phone5.setText("Phone No");
+        user_1_phone5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout user_1_panel5Layout = new javax.swing.GroupLayout(user_1_panel5);
+        user_1_panel5.setLayout(user_1_panel5Layout);
+        user_1_panel5Layout.setHorizontalGroup(
+            user_1_panel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(user_1_panel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(user_1_icon5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user_1_name5, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user_1_email5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user_1_phone5, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        user_1_panel5Layout.setVerticalGroup(
+            user_1_panel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(user_1_icon5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+            .addComponent(user_1_phone5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, user_1_panel5Layout.createSequentialGroup()
+                .addGroup(user_1_panel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(user_1_email5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(user_1_name5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(1, 1, 1))
         );
 
         jPanel22.setBackground(new java.awt.Color(58, 56, 77));
@@ -296,317 +532,39 @@ public class admin_user extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        cars_panel_13.setBackground(new java.awt.Color(58, 56, 77));
-        cars_panel_13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
-
-        cars_panel_2_icon11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/car-jeep.png"))); // NOI18N
-
-        Jpanel_username2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        Jpanel_username2.setForeground(new java.awt.Color(255, 255, 255));
-        Jpanel_username2.setText("User Name");
-
-        Jpanel_email_2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Jpanel_email_2.setForeground(new java.awt.Color(255, 255, 255));
-        Jpanel_email_2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        Jpanel_email_2.setText("Email");
-
-        jPanel23.setBackground(new java.awt.Color(58, 56, 77));
-
-        phone_no_2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        phone_no_2.setForeground(new java.awt.Color(255, 255, 255));
-        phone_no_2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        phone_no_2.setText("Phone No");
-        phone_no_2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
-        jPanel23.setLayout(jPanel23Layout);
-        jPanel23Layout.setHorizontalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(phone_no_2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel23Layout.setVerticalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(phone_no_2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout cars_panel_13Layout = new javax.swing.GroupLayout(cars_panel_13);
-        cars_panel_13.setLayout(cars_panel_13Layout);
-        cars_panel_13Layout.setHorizontalGroup(
-            cars_panel_13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cars_panel_13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cars_panel_2_icon11, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Jpanel_username2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(Jpanel_email_2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77))
-        );
-        cars_panel_13Layout.setVerticalGroup(
-            cars_panel_13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cars_panel_2_icon11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(cars_panel_13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(cars_panel_13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cars_panel_13Layout.createSequentialGroup()
-                        .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cars_panel_13Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(cars_panel_13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Jpanel_username2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Jpanel_email_2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
-        );
-
-        cars_panel_14.setBackground(new java.awt.Color(58, 56, 77));
-        cars_panel_14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
-
-        cars_panel_2_icon12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/car-jeep.png"))); // NOI18N
-
-        cars_panel_2_name3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        cars_panel_2_name3.setForeground(new java.awt.Color(255, 255, 255));
-        cars_panel_2_name3.setText("User Name");
-
-        Jpanel_email_3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Jpanel_email_3.setForeground(new java.awt.Color(255, 255, 255));
-        Jpanel_email_3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        Jpanel_email_3.setText("Email");
-
-        phone_no_3.setBackground(new java.awt.Color(58, 56, 77));
-
-        cars_panel_2_view_more5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cars_panel_2_view_more5.setForeground(new java.awt.Color(255, 255, 255));
-        cars_panel_2_view_more5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        cars_panel_2_view_more5.setText("Phone No");
-        cars_panel_2_view_more5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout phone_no_3Layout = new javax.swing.GroupLayout(phone_no_3);
-        phone_no_3.setLayout(phone_no_3Layout);
-        phone_no_3Layout.setHorizontalGroup(
-            phone_no_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, phone_no_3Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(cars_panel_2_view_more5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        phone_no_3Layout.setVerticalGroup(
-            phone_no_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, phone_no_3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cars_panel_2_view_more5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout cars_panel_14Layout = new javax.swing.GroupLayout(cars_panel_14);
-        cars_panel_14.setLayout(cars_panel_14Layout);
-        cars_panel_14Layout.setHorizontalGroup(
-            cars_panel_14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cars_panel_14Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cars_panel_2_icon12, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cars_panel_2_name3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(Jpanel_email_3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(phone_no_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77))
-        );
-        cars_panel_14Layout.setVerticalGroup(
-            cars_panel_14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cars_panel_2_icon12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(cars_panel_14Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(cars_panel_14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cars_panel_14Layout.createSequentialGroup()
-                        .addComponent(phone_no_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cars_panel_14Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(cars_panel_14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cars_panel_2_name3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Jpanel_email_3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-        );
-
-        cars_panel_15.setBackground(new java.awt.Color(58, 56, 77));
-        cars_panel_15.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
-
-        cars_panel_2_icon13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/car-jeep.png"))); // NOI18N
-
-        Jpanel_username4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        Jpanel_username4.setForeground(new java.awt.Color(255, 255, 255));
-        Jpanel_username4.setText("User Name");
-
-        Jpanel_email_4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Jpanel_email_4.setForeground(new java.awt.Color(255, 255, 255));
-        Jpanel_email_4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        Jpanel_email_4.setText("Email");
-
-        jPanel25.setBackground(new java.awt.Color(58, 56, 77));
-
-        phone_no_4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        phone_no_4.setForeground(new java.awt.Color(255, 255, 255));
-        phone_no_4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        phone_no_4.setText("Phone No");
-        phone_no_4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
-        jPanel25.setLayout(jPanel25Layout);
-        jPanel25Layout.setHorizontalGroup(
-            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(phone_no_4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel25Layout.setVerticalGroup(
-            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(phone_no_4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout cars_panel_15Layout = new javax.swing.GroupLayout(cars_panel_15);
-        cars_panel_15.setLayout(cars_panel_15Layout);
-        cars_panel_15Layout.setHorizontalGroup(
-            cars_panel_15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cars_panel_15Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cars_panel_2_icon13, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Jpanel_username4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(Jpanel_email_4, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77))
-        );
-        cars_panel_15Layout.setVerticalGroup(
-            cars_panel_15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cars_panel_2_icon13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(cars_panel_15Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(cars_panel_15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cars_panel_15Layout.createSequentialGroup()
-                        .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cars_panel_15Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(cars_panel_15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Jpanel_username4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Jpanel_email_4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-        );
-
-        Jpanel_username5.setBackground(new java.awt.Color(58, 56, 77));
-        Jpanel_username5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
-
-        cars_panel_2_icon14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/car-jeep.png"))); // NOI18N
-
-        cars_panel_2_name14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        cars_panel_2_name14.setForeground(new java.awt.Color(255, 255, 255));
-        cars_panel_2_name14.setText("User Name");
-
-        Jpanel_email_5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        Jpanel_email_5.setForeground(new java.awt.Color(255, 255, 255));
-        Jpanel_email_5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        Jpanel_email_5.setText("Email");
-
-        jPanel27.setBackground(new java.awt.Color(58, 56, 77));
-
-        phone_no_5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        phone_no_5.setForeground(new java.awt.Color(255, 255, 255));
-        phone_no_5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        phone_no_5.setText("Phone No");
-        phone_no_5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
-        jPanel27.setLayout(jPanel27Layout);
-        jPanel27Layout.setHorizontalGroup(
-            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(phone_no_5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel27Layout.setVerticalGroup(
-            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(phone_no_5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout Jpanel_username5Layout = new javax.swing.GroupLayout(Jpanel_username5);
-        Jpanel_username5.setLayout(Jpanel_username5Layout);
-        Jpanel_username5Layout.setHorizontalGroup(
-            Jpanel_username5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Jpanel_username5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cars_panel_2_icon14, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cars_panel_2_name14, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(Jpanel_email_5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77))
-        );
-        Jpanel_username5Layout.setVerticalGroup(
-            Jpanel_username5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cars_panel_2_icon14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(Jpanel_username5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(Jpanel_username5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Jpanel_username5Layout.createSequentialGroup()
-                        .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Jpanel_username5Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(Jpanel_username5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cars_panel_2_name14, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Jpanel_email_5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-        );
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cars_panel_10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cars_panel_13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cars_panel_14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cars_panel_15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Jpanel_username5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(user_1_panel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(user_1_panel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(user_1_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(user_1_panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(user_1_panel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(user_1_panel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cars_panel_10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(user_1_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cars_panel_13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(user_1_panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cars_panel_14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(user_1_panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cars_panel_15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(user_1_panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Jpanel_username5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(user_1_panel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user_1_panel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -631,11 +589,11 @@ public class admin_user extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -701,40 +659,15 @@ public class admin_user extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new admin_user().setVisible(true);
+                new admin_user(0,-1).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Jpanel_email_1;
-    private javax.swing.JLabel Jpanel_email_2;
-    private javax.swing.JLabel Jpanel_email_3;
-    private javax.swing.JLabel Jpanel_email_4;
-    private javax.swing.JLabel Jpanel_email_5;
-    private javax.swing.JLabel Jpanel_username1;
-    private javax.swing.JLabel Jpanel_username2;
-    private javax.swing.JLabel Jpanel_username4;
-    private javax.swing.JPanel Jpanel_username5;
-    private javax.swing.JPanel cars_panel_10;
-    private javax.swing.JPanel cars_panel_13;
-    private javax.swing.JPanel cars_panel_14;
-    private javax.swing.JPanel cars_panel_15;
-    private javax.swing.JLabel cars_panel_2_icon11;
-    private javax.swing.JLabel cars_panel_2_icon12;
-    private javax.swing.JLabel cars_panel_2_icon13;
-    private javax.swing.JLabel cars_panel_2_icon14;
-    private javax.swing.JLabel cars_panel_2_icon8;
-    private javax.swing.JLabel cars_panel_2_name14;
-    private javax.swing.JLabel cars_panel_2_name3;
-    private javax.swing.JLabel cars_panel_2_view_more5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel22;
-    private javax.swing.JPanel jPanel23;
-    private javax.swing.JPanel jPanel25;
-    private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -742,12 +675,37 @@ public class admin_user extends javax.swing.JFrame {
     private javax.swing.JLabel logout_textfield;
     private javax.swing.JLabel next_page_icon1;
     private javax.swing.JPanel next_page_panel1;
-    private javax.swing.JLabel phone_no_1;
-    private javax.swing.JLabel phone_no_2;
-    private javax.swing.JPanel phone_no_3;
-    private javax.swing.JLabel phone_no_4;
-    private javax.swing.JLabel phone_no_5;
     private javax.swing.JLabel prev_page_icon1;
     private javax.swing.JPanel prev_page_panel1;
+    private javax.swing.JLabel user_1_email;
+    private javax.swing.JLabel user_1_email1;
+    private javax.swing.JLabel user_1_email2;
+    private javax.swing.JLabel user_1_email3;
+    private javax.swing.JLabel user_1_email4;
+    private javax.swing.JLabel user_1_email5;
+    private javax.swing.JLabel user_1_icon;
+    private javax.swing.JLabel user_1_icon1;
+    private javax.swing.JLabel user_1_icon2;
+    private javax.swing.JLabel user_1_icon3;
+    private javax.swing.JLabel user_1_icon4;
+    private javax.swing.JLabel user_1_icon5;
+    private javax.swing.JLabel user_1_name;
+    private javax.swing.JLabel user_1_name1;
+    private javax.swing.JLabel user_1_name2;
+    private javax.swing.JLabel user_1_name3;
+    private javax.swing.JLabel user_1_name4;
+    private javax.swing.JLabel user_1_name5;
+    private javax.swing.JPanel user_1_panel;
+    private javax.swing.JPanel user_1_panel1;
+    private javax.swing.JPanel user_1_panel2;
+    private javax.swing.JPanel user_1_panel3;
+    private javax.swing.JPanel user_1_panel4;
+    private javax.swing.JPanel user_1_panel5;
+    private javax.swing.JLabel user_1_phone;
+    private javax.swing.JLabel user_1_phone1;
+    private javax.swing.JLabel user_1_phone2;
+    private javax.swing.JLabel user_1_phone3;
+    private javax.swing.JLabel user_1_phone4;
+    private javax.swing.JLabel user_1_phone5;
     // End of variables declaration//GEN-END:variables
 }
