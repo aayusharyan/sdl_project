@@ -5,6 +5,8 @@
  */
 package CarSales;
 
+import com.google.gson.Gson;
+
 /**
  *
  * @author aksha
@@ -14,8 +16,39 @@ public class Admin extends javax.swing.JFrame {
     /**
      * Creates new form AddCar
      */
-    public Admin() {
+    public Admin(int user_id, int page_id) {
         initComponents();
+        
+            int limit = 5;
+            int offset = 0;
+            if(page_id > 1) {
+                offset = ((page_id-1)*limit);
+            }
+            SQLdb connection = new SQLdb();
+            String orders_json_str = connection.getPurchases(offset, limit);
+            Gson gson = new Gson();
+            String[][] orders_data = gson.fromJson(orders_json_str, String[][].class);
+            for(String[] single_order : orders_data) {
+                if(single_order[0] != null) {
+                    int single_order_id = Integer.parseInt(single_order[0]);
+                    int order_location = (single_order_id-1)%5;
+                    
+                    int purchase_user_id = Integer.parseInt(single_order[1]);
+                    String purchase_user_details = connection.getUserDetails(purchase_user_id);
+                    String[] purchase_user_data = gson.fromJson(purchase_user_details, String[].class);
+                    
+                    int car_id = Integer.parseInt(single_order[2]);
+                    String car_details_str = connection.getCarDetails(car_id);
+                    String[] car_data = gson.fromJson(car_details_str, String[].class);
+                    
+                    switch (order_location) {
+                        case 0:
+                            order_1_car_name.setText(car_data[1]);
+                            order_1_user_name.setText(purchase_user_data[1]);
+                        break;
+                    }
+                }
+            }
     }
 
     /**
@@ -34,51 +67,31 @@ public class Admin extends javax.swing.JFrame {
         logout_label = new javax.swing.JPanel();
         logout_textfield = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        cars_panel_10 = new javax.swing.JPanel();
-        cars_panel_2_icon8 = new javax.swing.JLabel();
-        cars_panel_2_name8 = new javax.swing.JLabel();
-        cars_panel_2_company_name8 = new javax.swing.JLabel();
-        jPanel12 = new javax.swing.JPanel();
-        cars_panel_2_buy8 = new javax.swing.JLabel();
-        jPanel16 = new javax.swing.JPanel();
-        cars_panel_2_view_more1 = new javax.swing.JLabel();
+        order_1_panel = new javax.swing.JPanel();
+        order_1_icon = new javax.swing.JLabel();
+        order_1_car_name = new javax.swing.JLabel();
+        order_1_user_name = new javax.swing.JLabel();
+        order_1_panel1 = new javax.swing.JPanel();
+        order_1_icon1 = new javax.swing.JLabel();
+        order_1_car_name1 = new javax.swing.JLabel();
+        order_1_user_name1 = new javax.swing.JLabel();
+        order_1_panel3 = new javax.swing.JPanel();
+        order_1_icon3 = new javax.swing.JLabel();
+        order_1_car_name3 = new javax.swing.JLabel();
+        order_1_user_name3 = new javax.swing.JLabel();
+        order_1_panel4 = new javax.swing.JPanel();
+        order_1_icon4 = new javax.swing.JLabel();
+        order_1_car_name4 = new javax.swing.JLabel();
+        order_1_user_name4 = new javax.swing.JLabel();
+        order_1_panel5 = new javax.swing.JPanel();
+        order_1_icon5 = new javax.swing.JLabel();
+        order_1_car_name5 = new javax.swing.JLabel();
+        order_1_user_name5 = new javax.swing.JLabel();
         jPanel22 = new javax.swing.JPanel();
         prev_page_panel1 = new javax.swing.JPanel();
         prev_page_icon1 = new javax.swing.JLabel();
         next_page_panel1 = new javax.swing.JPanel();
         next_page_icon1 = new javax.swing.JLabel();
-        cars_panel_13 = new javax.swing.JPanel();
-        cars_panel_2_icon11 = new javax.swing.JLabel();
-        cars_panel_2_name11 = new javax.swing.JLabel();
-        cars_panel_2_company_name11 = new javax.swing.JLabel();
-        jPanel13 = new javax.swing.JPanel();
-        cars_panel_2_buy11 = new javax.swing.JLabel();
-        jPanel23 = new javax.swing.JPanel();
-        cars_panel_2_view_more4 = new javax.swing.JLabel();
-        cars_panel_14 = new javax.swing.JPanel();
-        cars_panel_2_icon12 = new javax.swing.JLabel();
-        cars_panel_2_name12 = new javax.swing.JLabel();
-        cars_panel_2_company_name12 = new javax.swing.JLabel();
-        jPanel14 = new javax.swing.JPanel();
-        cars_panel_2_buy12 = new javax.swing.JLabel();
-        jPanel24 = new javax.swing.JPanel();
-        cars_panel_2_view_more5 = new javax.swing.JLabel();
-        cars_panel_15 = new javax.swing.JPanel();
-        cars_panel_2_icon13 = new javax.swing.JLabel();
-        cars_panel_2_name13 = new javax.swing.JLabel();
-        cars_panel_2_company_name13 = new javax.swing.JLabel();
-        jPanel15 = new javax.swing.JPanel();
-        cars_panel_2_buy13 = new javax.swing.JLabel();
-        jPanel25 = new javax.swing.JPanel();
-        cars_panel_2_view_more6 = new javax.swing.JLabel();
-        cars_panel_16 = new javax.swing.JPanel();
-        cars_panel_2_icon14 = new javax.swing.JLabel();
-        cars_panel_2_name14 = new javax.swing.JLabel();
-        cars_panel_2_company_name14 = new javax.swing.JLabel();
-        jPanel26 = new javax.swing.JPanel();
-        cars_panel_2_buy14 = new javax.swing.JLabel();
-        jPanel27 = new javax.swing.JPanel();
-        cars_panel_2_view_more7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -121,7 +134,7 @@ public class Admin extends javax.swing.JFrame {
             .addGroup(logout_labelLayout.createSequentialGroup()
                 .addGap(77, 77, 77)
                 .addComponent(logout_textfield)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         logout_labelLayout.setVerticalGroup(
             logout_labelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,101 +160,206 @@ public class Admin extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
                 .addComponent(logout_label, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jPanel5.setBackground(new java.awt.Color(58, 56, 77));
 
-        cars_panel_10.setBackground(new java.awt.Color(58, 56, 77));
-        cars_panel_10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
+        order_1_panel.setBackground(new java.awt.Color(58, 56, 77));
+        order_1_panel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
 
-        cars_panel_2_icon8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/car-jeep.png"))); // NOI18N
+        order_1_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/car-jeep.png"))); // NOI18N
 
-        cars_panel_2_name8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        cars_panel_2_name8.setForeground(new java.awt.Color(255, 255, 255));
-        cars_panel_2_name8.setText("User Name");
+        order_1_car_name.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        order_1_car_name.setForeground(new java.awt.Color(255, 255, 255));
+        order_1_car_name.setText("User Name");
 
-        cars_panel_2_company_name8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cars_panel_2_company_name8.setForeground(new java.awt.Color(255, 255, 255));
-        cars_panel_2_company_name8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        cars_panel_2_company_name8.setText("Car Name");
+        order_1_user_name.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        order_1_user_name.setForeground(new java.awt.Color(255, 255, 255));
+        order_1_user_name.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        order_1_user_name.setText("Car Name");
 
-        jPanel12.setBackground(new java.awt.Color(58, 56, 77));
-
-        cars_panel_2_buy8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/online-shopping -32.png"))); // NOI18N
-        cars_panel_2_buy8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cars_panel_2_buy8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-        );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cars_panel_2_buy8, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-        );
-
-        jPanel16.setBackground(new java.awt.Color(58, 56, 77));
-
-        cars_panel_2_view_more1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cars_panel_2_view_more1.setForeground(new java.awt.Color(255, 255, 255));
-        cars_panel_2_view_more1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        cars_panel_2_view_more1.setText("Date");
-        cars_panel_2_view_more1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
-        jPanel16.setLayout(jPanel16Layout);
-        jPanel16Layout.setHorizontalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(cars_panel_2_view_more1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel16Layout.setVerticalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cars_panel_2_view_more1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout cars_panel_10Layout = new javax.swing.GroupLayout(cars_panel_10);
-        cars_panel_10.setLayout(cars_panel_10Layout);
-        cars_panel_10Layout.setHorizontalGroup(
-            cars_panel_10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cars_panel_10Layout.createSequentialGroup()
+        javax.swing.GroupLayout order_1_panelLayout = new javax.swing.GroupLayout(order_1_panel);
+        order_1_panel.setLayout(order_1_panelLayout);
+        order_1_panelLayout.setHorizontalGroup(
+            order_1_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(order_1_panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cars_panel_2_icon8, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(order_1_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(order_1_car_name, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cars_panel_2_name8, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(cars_panel_2_company_name8, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(order_1_user_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        cars_panel_10Layout.setVerticalGroup(
-            cars_panel_10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cars_panel_2_icon8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(cars_panel_10Layout.createSequentialGroup()
+        order_1_panelLayout.setVerticalGroup(
+            order_1_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(order_1_icon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, order_1_panelLayout.createSequentialGroup()
+                .addGroup(order_1_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(order_1_panelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(order_1_user_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(order_1_car_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        order_1_panel1.setBackground(new java.awt.Color(58, 56, 77));
+        order_1_panel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
+
+        order_1_icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/car-jeep.png"))); // NOI18N
+
+        order_1_car_name1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        order_1_car_name1.setForeground(new java.awt.Color(255, 255, 255));
+        order_1_car_name1.setText("User Name");
+
+        order_1_user_name1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        order_1_user_name1.setForeground(new java.awt.Color(255, 255, 255));
+        order_1_user_name1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        order_1_user_name1.setText("Car Name");
+
+        javax.swing.GroupLayout order_1_panel1Layout = new javax.swing.GroupLayout(order_1_panel1);
+        order_1_panel1.setLayout(order_1_panel1Layout);
+        order_1_panel1Layout.setHorizontalGroup(
+            order_1_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(order_1_panel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(cars_panel_10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cars_panel_10Layout.createSequentialGroup()
-                        .addGroup(cars_panel_10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cars_panel_10Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(cars_panel_10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cars_panel_2_name8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cars_panel_2_company_name8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addComponent(order_1_icon1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(order_1_car_name1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(order_1_user_name1, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        order_1_panel1Layout.setVerticalGroup(
+            order_1_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(order_1_icon1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, order_1_panel1Layout.createSequentialGroup()
+                .addGroup(order_1_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(order_1_panel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(order_1_user_name1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(order_1_car_name1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        order_1_panel3.setBackground(new java.awt.Color(58, 56, 77));
+        order_1_panel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
+
+        order_1_icon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/car-jeep.png"))); // NOI18N
+
+        order_1_car_name3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        order_1_car_name3.setForeground(new java.awt.Color(255, 255, 255));
+        order_1_car_name3.setText("User Name");
+
+        order_1_user_name3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        order_1_user_name3.setForeground(new java.awt.Color(255, 255, 255));
+        order_1_user_name3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        order_1_user_name3.setText("Car Name");
+
+        javax.swing.GroupLayout order_1_panel3Layout = new javax.swing.GroupLayout(order_1_panel3);
+        order_1_panel3.setLayout(order_1_panel3Layout);
+        order_1_panel3Layout.setHorizontalGroup(
+            order_1_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(order_1_panel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(order_1_icon3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(order_1_car_name3, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(order_1_user_name3, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        order_1_panel3Layout.setVerticalGroup(
+            order_1_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(order_1_icon3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, order_1_panel3Layout.createSequentialGroup()
+                .addGroup(order_1_panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(order_1_panel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(order_1_user_name3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(order_1_car_name3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        order_1_panel4.setBackground(new java.awt.Color(58, 56, 77));
+        order_1_panel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
+
+        order_1_icon4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/car-jeep.png"))); // NOI18N
+
+        order_1_car_name4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        order_1_car_name4.setForeground(new java.awt.Color(255, 255, 255));
+        order_1_car_name4.setText("User Name");
+
+        order_1_user_name4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        order_1_user_name4.setForeground(new java.awt.Color(255, 255, 255));
+        order_1_user_name4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        order_1_user_name4.setText("Car Name");
+
+        javax.swing.GroupLayout order_1_panel4Layout = new javax.swing.GroupLayout(order_1_panel4);
+        order_1_panel4.setLayout(order_1_panel4Layout);
+        order_1_panel4Layout.setHorizontalGroup(
+            order_1_panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(order_1_panel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(order_1_icon4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(order_1_car_name4, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(order_1_user_name4, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        order_1_panel4Layout.setVerticalGroup(
+            order_1_panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(order_1_icon4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, order_1_panel4Layout.createSequentialGroup()
+                .addGroup(order_1_panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(order_1_panel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(order_1_user_name4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(order_1_car_name4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        order_1_panel5.setBackground(new java.awt.Color(58, 56, 77));
+        order_1_panel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
+
+        order_1_icon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/car-jeep.png"))); // NOI18N
+
+        order_1_car_name5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        order_1_car_name5.setForeground(new java.awt.Color(255, 255, 255));
+        order_1_car_name5.setText("User Name");
+
+        order_1_user_name5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        order_1_user_name5.setForeground(new java.awt.Color(255, 255, 255));
+        order_1_user_name5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        order_1_user_name5.setText("Car Name");
+
+        javax.swing.GroupLayout order_1_panel5Layout = new javax.swing.GroupLayout(order_1_panel5);
+        order_1_panel5.setLayout(order_1_panel5Layout);
+        order_1_panel5Layout.setHorizontalGroup(
+            order_1_panel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(order_1_panel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(order_1_icon5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(order_1_car_name5, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(order_1_user_name5, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        order_1_panel5Layout.setVerticalGroup(
+            order_1_panel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(order_1_icon5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, order_1_panel5Layout.createSequentialGroup()
+                .addGroup(order_1_panel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(order_1_panel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(order_1_user_name5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(order_1_car_name5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel22.setBackground(new java.awt.Color(58, 56, 77));
@@ -326,397 +444,34 @@ public class Admin extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        cars_panel_13.setBackground(new java.awt.Color(58, 56, 77));
-        cars_panel_13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
-
-        cars_panel_2_icon11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/car-jeep.png"))); // NOI18N
-
-        cars_panel_2_name11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        cars_panel_2_name11.setForeground(new java.awt.Color(255, 255, 255));
-        cars_panel_2_name11.setText("User Name");
-
-        cars_panel_2_company_name11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cars_panel_2_company_name11.setForeground(new java.awt.Color(255, 255, 255));
-        cars_panel_2_company_name11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        cars_panel_2_company_name11.setText("Car Name");
-
-        jPanel13.setBackground(new java.awt.Color(58, 56, 77));
-
-        cars_panel_2_buy11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/online-shopping -32.png"))); // NOI18N
-        cars_panel_2_buy11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cars_panel_2_buy11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cars_panel_2_buy11, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-        );
-
-        jPanel23.setBackground(new java.awt.Color(58, 56, 77));
-
-        cars_panel_2_view_more4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cars_panel_2_view_more4.setForeground(new java.awt.Color(255, 255, 255));
-        cars_panel_2_view_more4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        cars_panel_2_view_more4.setText("Date");
-        cars_panel_2_view_more4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
-        jPanel23.setLayout(jPanel23Layout);
-        jPanel23Layout.setHorizontalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(cars_panel_2_view_more4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel23Layout.setVerticalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cars_panel_2_view_more4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout cars_panel_13Layout = new javax.swing.GroupLayout(cars_panel_13);
-        cars_panel_13.setLayout(cars_panel_13Layout);
-        cars_panel_13Layout.setHorizontalGroup(
-            cars_panel_13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cars_panel_13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cars_panel_2_icon11, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cars_panel_2_name11, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(cars_panel_2_company_name11, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        cars_panel_13Layout.setVerticalGroup(
-            cars_panel_13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cars_panel_2_icon11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(cars_panel_13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(cars_panel_13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cars_panel_13Layout.createSequentialGroup()
-                        .addGroup(cars_panel_13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cars_panel_13Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(cars_panel_13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cars_panel_2_name11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cars_panel_2_company_name11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
-        );
-
-        cars_panel_14.setBackground(new java.awt.Color(58, 56, 77));
-        cars_panel_14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
-
-        cars_panel_2_icon12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/car-jeep.png"))); // NOI18N
-
-        cars_panel_2_name12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        cars_panel_2_name12.setForeground(new java.awt.Color(255, 255, 255));
-        cars_panel_2_name12.setText("User Name");
-
-        cars_panel_2_company_name12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cars_panel_2_company_name12.setForeground(new java.awt.Color(255, 255, 255));
-        cars_panel_2_company_name12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        cars_panel_2_company_name12.setText("Car Name");
-
-        jPanel14.setBackground(new java.awt.Color(58, 56, 77));
-
-        cars_panel_2_buy12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/online-shopping -32.png"))); // NOI18N
-        cars_panel_2_buy12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cars_panel_2_buy12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-        );
-        jPanel14Layout.setVerticalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cars_panel_2_buy12, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-        );
-
-        jPanel24.setBackground(new java.awt.Color(58, 56, 77));
-
-        cars_panel_2_view_more5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cars_panel_2_view_more5.setForeground(new java.awt.Color(255, 255, 255));
-        cars_panel_2_view_more5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        cars_panel_2_view_more5.setText("Date");
-        cars_panel_2_view_more5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
-        jPanel24.setLayout(jPanel24Layout);
-        jPanel24Layout.setHorizontalGroup(
-            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(cars_panel_2_view_more5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel24Layout.setVerticalGroup(
-            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cars_panel_2_view_more5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout cars_panel_14Layout = new javax.swing.GroupLayout(cars_panel_14);
-        cars_panel_14.setLayout(cars_panel_14Layout);
-        cars_panel_14Layout.setHorizontalGroup(
-            cars_panel_14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cars_panel_14Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cars_panel_2_icon12, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cars_panel_2_name12, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(cars_panel_2_company_name12, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        cars_panel_14Layout.setVerticalGroup(
-            cars_panel_14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cars_panel_2_icon12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(cars_panel_14Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(cars_panel_14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cars_panel_14Layout.createSequentialGroup()
-                        .addGroup(cars_panel_14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cars_panel_14Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(cars_panel_14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cars_panel_2_name12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cars_panel_2_company_name12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-        );
-
-        cars_panel_15.setBackground(new java.awt.Color(58, 56, 77));
-        cars_panel_15.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
-
-        cars_panel_2_icon13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/car-jeep.png"))); // NOI18N
-
-        cars_panel_2_name13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        cars_panel_2_name13.setForeground(new java.awt.Color(255, 255, 255));
-        cars_panel_2_name13.setText("User Name");
-
-        cars_panel_2_company_name13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cars_panel_2_company_name13.setForeground(new java.awt.Color(255, 255, 255));
-        cars_panel_2_company_name13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        cars_panel_2_company_name13.setText("Car Name");
-
-        jPanel15.setBackground(new java.awt.Color(58, 56, 77));
-
-        cars_panel_2_buy13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/online-shopping -32.png"))); // NOI18N
-        cars_panel_2_buy13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cars_panel_2_buy13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-        );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cars_panel_2_buy13, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-        );
-
-        jPanel25.setBackground(new java.awt.Color(58, 56, 77));
-
-        cars_panel_2_view_more6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cars_panel_2_view_more6.setForeground(new java.awt.Color(255, 255, 255));
-        cars_panel_2_view_more6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        cars_panel_2_view_more6.setText("Date");
-        cars_panel_2_view_more6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
-        jPanel25.setLayout(jPanel25Layout);
-        jPanel25Layout.setHorizontalGroup(
-            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(cars_panel_2_view_more6, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel25Layout.setVerticalGroup(
-            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cars_panel_2_view_more6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout cars_panel_15Layout = new javax.swing.GroupLayout(cars_panel_15);
-        cars_panel_15.setLayout(cars_panel_15Layout);
-        cars_panel_15Layout.setHorizontalGroup(
-            cars_panel_15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cars_panel_15Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cars_panel_2_icon13, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cars_panel_2_name13, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(cars_panel_2_company_name13, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        cars_panel_15Layout.setVerticalGroup(
-            cars_panel_15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cars_panel_2_icon13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(cars_panel_15Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(cars_panel_15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cars_panel_15Layout.createSequentialGroup()
-                        .addGroup(cars_panel_15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cars_panel_15Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(cars_panel_15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cars_panel_2_name13, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cars_panel_2_company_name13, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-        );
-
-        cars_panel_16.setBackground(new java.awt.Color(58, 56, 77));
-        cars_panel_16.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
-
-        cars_panel_2_icon14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/car-jeep.png"))); // NOI18N
-
-        cars_panel_2_name14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        cars_panel_2_name14.setForeground(new java.awt.Color(255, 255, 255));
-        cars_panel_2_name14.setText("User Name");
-
-        cars_panel_2_company_name14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cars_panel_2_company_name14.setForeground(new java.awt.Color(255, 255, 255));
-        cars_panel_2_company_name14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        cars_panel_2_company_name14.setText("Car Name");
-
-        jPanel26.setBackground(new java.awt.Color(58, 56, 77));
-
-        cars_panel_2_buy14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/online-shopping -32.png"))); // NOI18N
-        cars_panel_2_buy14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
-        jPanel26.setLayout(jPanel26Layout);
-        jPanel26Layout.setHorizontalGroup(
-            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cars_panel_2_buy14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-        );
-        jPanel26Layout.setVerticalGroup(
-            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cars_panel_2_buy14, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-        );
-
-        jPanel27.setBackground(new java.awt.Color(58, 56, 77));
-
-        cars_panel_2_view_more7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cars_panel_2_view_more7.setForeground(new java.awt.Color(255, 255, 255));
-        cars_panel_2_view_more7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        cars_panel_2_view_more7.setText("Date");
-        cars_panel_2_view_more7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
-        jPanel27.setLayout(jPanel27Layout);
-        jPanel27Layout.setHorizontalGroup(
-            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(cars_panel_2_view_more7, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel27Layout.setVerticalGroup(
-            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cars_panel_2_view_more7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout cars_panel_16Layout = new javax.swing.GroupLayout(cars_panel_16);
-        cars_panel_16.setLayout(cars_panel_16Layout);
-        cars_panel_16Layout.setHorizontalGroup(
-            cars_panel_16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cars_panel_16Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cars_panel_2_icon14, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cars_panel_2_name14, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(cars_panel_2_company_name14, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        cars_panel_16Layout.setVerticalGroup(
-            cars_panel_16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cars_panel_2_icon14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(cars_panel_16Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(cars_panel_16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(cars_panel_16Layout.createSequentialGroup()
-                        .addGroup(cars_panel_16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cars_panel_16Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(cars_panel_16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cars_panel_2_name14, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cars_panel_2_company_name14, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-        );
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cars_panel_10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cars_panel_13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cars_panel_14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cars_panel_15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cars_panel_16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(order_1_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(order_1_panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(order_1_panel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(order_1_panel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(order_1_panel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cars_panel_10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(order_1_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cars_panel_13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(order_1_panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cars_panel_14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(order_1_panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cars_panel_15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(order_1_panel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cars_panel_16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(order_1_panel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -741,11 +496,11 @@ public class Admin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 815, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -813,55 +568,15 @@ public class Admin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Admin().setVisible(true);
+                new Admin(0,-1).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel cars_panel_10;
-    private javax.swing.JPanel cars_panel_13;
-    private javax.swing.JPanel cars_panel_14;
-    private javax.swing.JPanel cars_panel_15;
-    private javax.swing.JPanel cars_panel_16;
-    private javax.swing.JLabel cars_panel_2_buy11;
-    private javax.swing.JLabel cars_panel_2_buy12;
-    private javax.swing.JLabel cars_panel_2_buy13;
-    private javax.swing.JLabel cars_panel_2_buy14;
-    private javax.swing.JLabel cars_panel_2_buy8;
-    private javax.swing.JLabel cars_panel_2_company_name11;
-    private javax.swing.JLabel cars_panel_2_company_name12;
-    private javax.swing.JLabel cars_panel_2_company_name13;
-    private javax.swing.JLabel cars_panel_2_company_name14;
-    private javax.swing.JLabel cars_panel_2_company_name8;
-    private javax.swing.JLabel cars_panel_2_icon11;
-    private javax.swing.JLabel cars_panel_2_icon12;
-    private javax.swing.JLabel cars_panel_2_icon13;
-    private javax.swing.JLabel cars_panel_2_icon14;
-    private javax.swing.JLabel cars_panel_2_icon8;
-    private javax.swing.JLabel cars_panel_2_name11;
-    private javax.swing.JLabel cars_panel_2_name12;
-    private javax.swing.JLabel cars_panel_2_name13;
-    private javax.swing.JLabel cars_panel_2_name14;
-    private javax.swing.JLabel cars_panel_2_name8;
-    private javax.swing.JLabel cars_panel_2_view_more1;
-    private javax.swing.JLabel cars_panel_2_view_more4;
-    private javax.swing.JLabel cars_panel_2_view_more5;
-    private javax.swing.JLabel cars_panel_2_view_more6;
-    private javax.swing.JLabel cars_panel_2_view_more7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel22;
-    private javax.swing.JPanel jPanel23;
-    private javax.swing.JPanel jPanel24;
-    private javax.swing.JPanel jPanel25;
-    private javax.swing.JPanel jPanel26;
-    private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -869,6 +584,30 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JLabel logout_textfield;
     private javax.swing.JLabel next_page_icon1;
     private javax.swing.JPanel next_page_panel1;
+    private javax.swing.JLabel order_1_car_name;
+    private javax.swing.JLabel order_1_car_name1;
+    private javax.swing.JLabel order_1_car_name2;
+    private javax.swing.JLabel order_1_car_name3;
+    private javax.swing.JLabel order_1_car_name4;
+    private javax.swing.JLabel order_1_car_name5;
+    private javax.swing.JLabel order_1_icon;
+    private javax.swing.JLabel order_1_icon1;
+    private javax.swing.JLabel order_1_icon2;
+    private javax.swing.JLabel order_1_icon3;
+    private javax.swing.JLabel order_1_icon4;
+    private javax.swing.JLabel order_1_icon5;
+    private javax.swing.JPanel order_1_panel;
+    private javax.swing.JPanel order_1_panel1;
+    private javax.swing.JPanel order_1_panel2;
+    private javax.swing.JPanel order_1_panel3;
+    private javax.swing.JPanel order_1_panel4;
+    private javax.swing.JPanel order_1_panel5;
+    private javax.swing.JLabel order_1_user_name;
+    private javax.swing.JLabel order_1_user_name1;
+    private javax.swing.JLabel order_1_user_name2;
+    private javax.swing.JLabel order_1_user_name3;
+    private javax.swing.JLabel order_1_user_name4;
+    private javax.swing.JLabel order_1_user_name5;
     private javax.swing.JLabel prev_page_icon1;
     private javax.swing.JPanel prev_page_panel1;
     // End of variables declaration//GEN-END:variables
