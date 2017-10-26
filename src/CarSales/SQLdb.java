@@ -279,11 +279,10 @@ public class SQLdb {
             st = con.createStatement();
             int count = 0;
             String offset_statement = "";
-            String whereSTR = "";
             if(offset > 0) {
                 offset_statement = " OFFSET "+offset+" ";
             }
-            ResultSet re = st.executeQuery("SELECT * FROM transactions LIMIT "+limit+offset_statement);
+            ResultSet re = st.executeQuery("SELECT * FROM transactions ORDER BY id DESC LIMIT "+limit+offset_statement);
             while(re.next()){
                 rtrn[count][0] = re.getString("id");
                 rtrn[count][1] = re.getString("user_id");
