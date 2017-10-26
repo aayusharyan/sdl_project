@@ -428,8 +428,8 @@ public class ProfileM extends javax.swing.JFrame {
         Home h = new Home();
         this.getContentPane().removeAll();
         this.getContentPane().add(h.getContentPane());
-        this.revalidate();
-        this.repaint();
+        this.getContentPane().revalidate();
+        this.getContentPane().repaint();
     }//GEN-LAST:event_logout_textfieldMouseClicked
 
     private void logout_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logout_labelMouseClicked
