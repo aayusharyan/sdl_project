@@ -6,6 +6,8 @@
 package CarSales;
 
 import com.google.gson.Gson;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -35,11 +37,14 @@ public class CarDetails extends javax.swing.JFrame {
             String car_json_data = connection.getCarDetails(car_id);
             Gson gson = new Gson();
             String[] car_data = gson.fromJson(car_json_data, String[].class);
-            car_name_label.setText(car_data[1]);
-            car_company_label.setText(car_data[3]);
-            car_price.setText("Price: "+car_data[5]);
-            car_description_label.setText(car_data[6]);
-            this.company_id = Integer.parseInt(car_data[7]);
+            
+            ArrayList car_data_al = new ArrayList<>(Arrays.asList(car_data));
+            
+            car_name_label.setText(car_data_al.get(1).toString());
+            car_company_label.setText(car_data_al.get(3).toString());
+            car_price.setText("Price: "+car_data_al.get(5).toString());
+            car_description_label.setText(car_data_al.get(6).toString());
+            this.company_id = Integer.parseInt(car_data_al.get(7).toString());
             
             String user_obj_json = connection.getUserDetails(this.user_id);
             String[] user_details = gson.fromJson(user_obj_json, String[].class);
