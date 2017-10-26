@@ -299,4 +299,26 @@ public class SQLdb {
         return return_str;
     }
     
+    public int remainingUsers(int offset,int limit) {
+        int total_elems = 0;
+        try {
+            // TODO add your handling code here:
+            Statement st;
+            st = con.createStatement();
+            ResultSet re = st.executeQuery("SELECT COUNT(*) AS total FROM carsales");
+            while(re.next()){
+                total_elems = Integer.parseInt(re.getString("total"));
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int already_done = offset+limit;
+        int remaining = total_elems - already_done;
+        if(remaining < 0) {
+            remaining = 0;
+        }
+        return remaining;
+    }
+    
 }
