@@ -421,6 +421,7 @@ public class CarList extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(58, 56, 77));
 
         cars_panel_1_buy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/online-shopping -32.png"))); // NOI18N
+        cars_panel_1_buy.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -436,6 +437,7 @@ public class CarList extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(58, 56, 77));
 
         cars_panel_1_view_more.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/more.png"))); // NOI18N
+        cars_panel_1_view_more.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -500,6 +502,7 @@ public class CarList extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(58, 56, 77));
 
         cars_panel_2_buy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/online-shopping -32.png"))); // NOI18N
+        cars_panel_2_buy.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -515,6 +518,7 @@ public class CarList extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(58, 56, 77));
 
         cars_panel_2_view_more.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/more.png"))); // NOI18N
+        cars_panel_2_view_more.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -579,6 +583,7 @@ public class CarList extends javax.swing.JFrame {
         jPanel10.setBackground(new java.awt.Color(58, 56, 77));
 
         cars_panel_3_buy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/online-shopping -32.png"))); // NOI18N
+        cars_panel_3_buy.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -594,6 +599,7 @@ public class CarList extends javax.swing.JFrame {
         jPanel11.setBackground(new java.awt.Color(58, 56, 77));
 
         cars_panel_3_view_more.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/more.png"))); // NOI18N
+        cars_panel_3_view_more.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -658,6 +664,7 @@ public class CarList extends javax.swing.JFrame {
         jPanel12.setBackground(new java.awt.Color(58, 56, 77));
 
         cars_panel_4_buy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/online-shopping -32.png"))); // NOI18N
+        cars_panel_4_buy.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -673,6 +680,7 @@ public class CarList extends javax.swing.JFrame {
         jPanel13.setBackground(new java.awt.Color(58, 56, 77));
 
         cars_panel_4_view_more.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/more.png"))); // NOI18N
+        cars_panel_4_view_more.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -737,6 +745,7 @@ public class CarList extends javax.swing.JFrame {
         jPanel14.setBackground(new java.awt.Color(58, 56, 77));
 
         cars_panel_5_buy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/online-shopping -32.png"))); // NOI18N
+        cars_panel_5_buy.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -752,6 +761,7 @@ public class CarList extends javax.swing.JFrame {
         jPanel15.setBackground(new java.awt.Color(58, 56, 77));
 
         cars_panel_5_view_more.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/more.png"))); // NOI18N
+        cars_panel_5_view_more.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -824,7 +834,7 @@ public class CarList extends javax.swing.JFrame {
             .addGroup(prev_page_panelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(prev_page_icon)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         prev_page_panelLayout.setVerticalGroup(
             prev_page_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -851,7 +861,7 @@ public class CarList extends javax.swing.JFrame {
         next_page_panelLayout.setHorizontalGroup(
             next_page_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, next_page_panelLayout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(next_page_icon)
                 .addContainerGap())
         );
