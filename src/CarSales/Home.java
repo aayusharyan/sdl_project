@@ -36,9 +36,15 @@ public class Home extends javax.swing.JFrame {
             SQLdb connection = new SQLdb();
             String[] login_status = connection.login(json_user_data);
             if(login_status[0].equals("true")) {
-                CompanyList comp=new CompanyList(Integer.parseInt(login_status[1]));
-                comp.setVisible(true);
-                this.dispose();
+                if(login_status[2].equals("admin")) {
+                    Admin admin = new Admin(Integer.parseInt(login_status[1]), 1);
+                    admin.setVisible(true);
+                    this.dispose();
+                } else {
+                    CompanyList comp = new CompanyList(Integer.parseInt(login_status[1]));
+                    comp.setVisible(true);
+                    this.dispose();
+                }
             } else {
                 invalid_credentials_err_msg.setVisible(true);
             }
