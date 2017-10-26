@@ -162,7 +162,7 @@ public class SQLdb {
     }
     
     public String getCarDetails(int car_id) {
-        String rtrn[] = new String[7];
+        String rtrn[] = new String[8];
         String return_str = "";
         try {
             // TODO add your handling code here:
