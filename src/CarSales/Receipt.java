@@ -31,6 +31,7 @@ public class Receipt extends javax.swing.JFrame {
     public Receipt(int user_id, int car_id) {
         this.user_id = user_id;
         initComponents();
+        this.setResizable(false);
         user_name.setVisible(false);
         product_car_id.setVisible(false);
         car_price.setVisible(false);

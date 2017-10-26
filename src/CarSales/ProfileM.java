@@ -38,6 +38,7 @@ public class ProfileM extends javax.swing.JFrame {
     public ProfileM(int user_id) {
         this.user_id = user_id;
         initComponents();
+        this.setResizable(false);
         update_success.setVisible(false);
         update_error.setVisible(false);
         new Thread(() -> {

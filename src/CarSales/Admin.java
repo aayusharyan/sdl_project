@@ -27,6 +27,7 @@ public class Admin extends javax.swing.JFrame {
         this.user_id = user_id;
         this.page_id = page_id;
         initComponents();
+        this.setResizable(false);
         order_1_panel.setVisible(false);
         order_2_panel.setVisible(false);
         order_3_panel.setVisible(false);

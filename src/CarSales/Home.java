@@ -19,6 +19,7 @@ public class Home extends javax.swing.JFrame {
      */
     public Home() {
         initComponents();
+        this.setResizable(false);
         loaderpanel.setVisible(false);
         invalid_credentials_err_msg.setVisible(false);
         invalid_register_err_msg.setVisible(false);

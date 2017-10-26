@@ -33,6 +33,7 @@ public class CarDetails extends javax.swing.JFrame {
         this.car_id = car_id;
         this.user_id = user_id;
         initComponents();
+        this.setResizable(false);
         
         new Thread(() -> {
             SQLdb connection = new SQLdb();

@@ -29,6 +29,7 @@ public class admin_user extends javax.swing.JFrame {
         this.user_id = user_id;
         this.page_id = page_id;
         initComponents();
+        this.setResizable(false);
         user_1_panel.setVisible(false);
         user_2_panel.setVisible(false);
         user_3_panel.setVisible(false);

@@ -30,6 +30,7 @@ public class CompanyList extends javax.swing.JFrame {
     public CompanyList(int user_id) {
         this.user_id = user_id;
         initComponents();
+        this.setResizable(false);
         company_panel_1.setVisible(false);
         company_panel_2.setVisible(false);
         company_panel_3.setVisible(false);

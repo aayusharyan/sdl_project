@@ -47,6 +47,7 @@ public class CarList extends javax.swing.JFrame {
         this.curr_page_id = page_id;
         this.user_id = user_id;
         initComponents();
+        this.setResizable(false);
         cars_panel_1.setVisible(false);
         cars_panel_2.setVisible(false);
         cars_panel_3.setVisible(false);
