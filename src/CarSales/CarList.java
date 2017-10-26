@@ -262,6 +262,7 @@ public class CarList extends javax.swing.JFrame {
         });
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/account.png"))); // NOI18N
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel7MouseClicked(evt);
@@ -339,6 +340,7 @@ public class CarList extends javax.swing.JFrame {
         back_btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         back_btn.setForeground(new java.awt.Color(255, 255, 255));
         back_btn.setText("⬅ Back");
+        back_btn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         back_btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 back_btnMouseClicked(evt);
@@ -814,6 +816,7 @@ public class CarList extends javax.swing.JFrame {
 
         prev_page_panel.setBackground(new java.awt.Color(58, 56, 77));
         prev_page_panel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        prev_page_panel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         prev_page_panel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 prev_page_panelMouseClicked(evt);
@@ -821,6 +824,7 @@ public class CarList extends javax.swing.JFrame {
         });
 
         prev_page_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/left-chevron.png"))); // NOI18N
+        prev_page_icon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         prev_page_icon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 prev_page_iconMouseClicked(evt);
@@ -843,6 +847,7 @@ public class CarList extends javax.swing.JFrame {
 
         next_page_panel.setBackground(new java.awt.Color(58, 56, 77));
         next_page_panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        next_page_panel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         next_page_panel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 next_page_panelMouseClicked(evt);
@@ -850,6 +855,7 @@ public class CarList extends javax.swing.JFrame {
         });
 
         next_page_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/right-chevron.png"))); // NOI18N
+        next_page_icon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         next_page_icon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 next_page_iconMouseClicked(evt);
