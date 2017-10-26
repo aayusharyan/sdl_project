@@ -191,7 +191,7 @@ public class Admin extends javax.swing.JFrame {
 
         Jpanel_user.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         Jpanel_user.setForeground(new java.awt.Color(255, 255, 255));
-        Jpanel_user.setText("User");
+        Jpanel_user.setText("Users");
         Jpanel_user.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Jpanel_userMouseClicked(evt);
