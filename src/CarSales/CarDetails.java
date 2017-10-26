@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 public class CarDetails extends javax.swing.JFrame {
     private int user_id;
     private int car_id;
+    private int company_id;
     /**
      * Creates new form CarDetails
      */
@@ -38,6 +39,7 @@ public class CarDetails extends javax.swing.JFrame {
             car_company_label.setText(car_data[3]);
             car_price.setText("Price: "+car_data[5]);
             car_description_label.setText(car_data[6]);
+            this.company_id = Integer.parseInt(car_data[7]);
             
             String user_obj_json = connection.getUserDetails(this.user_id);
             String[] user_details = gson.fromJson(user_obj_json, String[].class);
@@ -345,8 +347,8 @@ public class CarDetails extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void back_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back_btnMouseClicked
-        CompanyList company_list = new CompanyList(this.user_id);
-        company_list.setVisible(true);
+        CarList car_list = new CarList(this.user_id, this.company_id, -1);
+        car_list.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_back_btnMouseClicked
 

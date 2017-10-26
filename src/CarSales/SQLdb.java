@@ -177,6 +177,7 @@ public class SQLdb {
                 rtrn[4] = re.getString("image");
                 rtrn[5] = re.getString("price");
                 rtrn[6] = re.getString("description");
+                rtrn[7] = re.getString("company_id");
             }
             Gson gson = new Gson();
             return_str = gson.toJson(rtrn);
