@@ -253,7 +253,7 @@ public class SQLdb {
             if(offset > 0) {
                 offset_statement = " OFFSET "+offset+" ";
             }
-            ResultSet re = st.executeQuery("SELECT * FROM carsales LIMIT "+limit+offset_statement);
+            ResultSet re = st.executeQuery("SELECT * FROM carsales ORDER BY Id DESC LIMIT "+limit+offset_statement);
             while(re.next()){
                 rtrn[count][0] = re.getString("Id");
                 rtrn[count][1] = re.getString("Name");
