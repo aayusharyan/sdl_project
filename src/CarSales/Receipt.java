@@ -52,6 +52,7 @@ public class Receipt extends javax.swing.JFrame {
                 double tax = car_price_money*0.18;
                 tax_gst.setText("GST (18%): "+tax);
                 double total_price = car_price_money+tax;
+                int total_round=(int) Math.round(total_price);
 
                 user_name.setText(user_details[1]);
                 product_car_id.setText("Product ID: "+car_id);
