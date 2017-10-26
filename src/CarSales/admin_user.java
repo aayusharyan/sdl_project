@@ -19,8 +19,8 @@ public class admin_user extends javax.swing.JFrame {
         admin_user admin_user = new admin_user(this.user_id, new_page_id);
         this.getContentPane().removeAll();
         this.getContentPane().add(admin_user.getContentPane());
-        this.revalidate();
-        this.repaint();
+        this.getContentPane().revalidate();
+        this.getContentPane().repaint();
     }
     /**
      * Creates new form admin_user
@@ -726,8 +726,8 @@ public class admin_user extends javax.swing.JFrame {
         Home h = new Home();
         this.getContentPane().removeAll();
         this.getContentPane().add(h.getContentPane());
-        this.revalidate();
-        this.repaint();
+        this.getContentPane().revalidate();
+        this.getContentPane().repaint();
     }//GEN-LAST:event_logout_textfieldMouseClicked
 
     private void logout_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logout_labelMouseClicked
@@ -735,8 +735,8 @@ public class admin_user extends javax.swing.JFrame {
         Home h = new Home();
         this.getContentPane().removeAll();
         this.getContentPane().add(h.getContentPane());
-        this.revalidate();
-        this.repaint();
+        this.getContentPane().revalidate();
+        this.getContentPane().repaint();
     }//GEN-LAST:event_logout_labelMouseClicked
 
     private void prev_page_iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prev_page_iconMouseClicked
@@ -759,8 +759,8 @@ public class admin_user extends javax.swing.JFrame {
         Admin admin = new Admin(this.user_id, 1);
         this.getContentPane().removeAll();
         this.getContentPane().add(admin.getContentPane());
-        this.revalidate();
-        this.repaint();
+        this.getContentPane().revalidate();
+        this.getContentPane().repaint();
     }//GEN-LAST:event_jLabel1MouseClicked
 
     /**

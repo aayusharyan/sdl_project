@@ -21,8 +21,8 @@ public class CompanyList extends javax.swing.JFrame {
         CarList car_list = new CarList(user_id, company_id, -1);
         this.getContentPane().removeAll();
         this.getContentPane().add(car_list.getContentPane());
-        this.revalidate();
-        this.repaint();
+        this.getContentPane().revalidate();
+        this.getContentPane().repaint();
     }
 
     /**
@@ -570,8 +570,8 @@ public class CompanyList extends javax.swing.JFrame {
         Home h = new Home();
         this.getContentPane().removeAll();
         this.getContentPane().add(h.getContentPane());
-        this.revalidate();
-        this.repaint();
+        this.getContentPane().revalidate();
+        this.getContentPane().repaint();
         
     }//GEN-LAST:event_logout_labelMouseClicked
 
@@ -580,8 +580,8 @@ public class CompanyList extends javax.swing.JFrame {
         Home h = new Home();
         this.getContentPane().removeAll();
         this.getContentPane().add(h.getContentPane());
-        this.revalidate();
-        this.repaint();
+        this.getContentPane().revalidate();
+        this.getContentPane().repaint();
     }//GEN-LAST:event_logout_textfieldMouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
@@ -596,16 +596,16 @@ public class CompanyList extends javax.swing.JFrame {
         ProfileM prifile_setting = new ProfileM(this.user_id);
         this.getContentPane().removeAll();
         this.getContentPane().add(prifile_setting.getContentPane());
-        this.revalidate();
-        this.repaint();
+        this.getContentPane().revalidate();
+        this.getContentPane().repaint();
     }//GEN-LAST:event_jPanel8MouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         CarList carlist = new CarList(this.user_id, 0, 1);
         this.getContentPane().removeAll();
         this.getContentPane().add(carlist.getContentPane());
-        this.revalidate();
-        this.repaint();
+        this.getContentPane().revalidate();
+        this.getContentPane().repaint();
     }//GEN-LAST:event_jLabel1MouseClicked
 
     /**

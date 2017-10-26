@@ -437,8 +437,8 @@ public class ProfileM extends javax.swing.JFrame {
         Home h = new Home();
         this.getContentPane().removeAll();
         this.getContentPane().add(h.getContentPane());
-        this.revalidate();
-        this.repaint();
+        this.getContentPane().revalidate();
+        this.getContentPane().repaint();
     }//GEN-LAST:event_logout_labelMouseClicked
 
     private void update_nameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_update_nameFocusGained
@@ -492,8 +492,8 @@ public class ProfileM extends javax.swing.JFrame {
         CompanyList cl = new CompanyList(this.user_id);
         this.getContentPane().removeAll();
         this.getContentPane().add(cl.getContentPane());
-        this.revalidate();
-        this.repaint();
+        this.getContentPane().revalidate();
+        this.getContentPane().repaint();
     }//GEN-LAST:event_back_btnMouseClicked
 
     private void submitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitMouseClicked
