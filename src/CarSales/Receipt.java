@@ -295,8 +295,10 @@ public class Receipt extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         CompanyList cl = new CompanyList(this.user_id);
-        cl.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(cl.getContentPane());
+        this.getContentPane().revalidate();
+        this.getContentPane().repaint();
     }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
