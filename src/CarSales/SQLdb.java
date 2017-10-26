@@ -37,7 +37,7 @@ public class SQLdb {
         Gson gson = new Gson();
         User user_obj = gson.fromJson(json_user_data, User.class);
 
-        String[] rtrn = new String[2];
+        String[] rtrn = new String[3];
         rtrn[0] = "false";
         try {
             // TODO add your handling code here:
@@ -48,6 +48,7 @@ public class SQLdb {
                 // ResultSet processing here
                 rtrn[0] = "true";
                 rtrn[1] = re.getString("Id");
+                rtrn[2] = re.getString("type");
             }
         }
         catch (SQLException ex) {
