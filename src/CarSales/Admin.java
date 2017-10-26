@@ -77,7 +77,7 @@ public class Admin extends javax.swing.JFrame {
             }
             
             connection = new SQLdb();
-            int remaining_items = connection.remainingUsers(offset, limit);
+            int remaining_items = connection.remainingOrders(offset, limit);
             if(remaining_items > 0) {
                 next_page_panel.setVisible(true);
             }
