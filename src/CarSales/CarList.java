@@ -21,14 +21,18 @@ public class CarList extends javax.swing.JFrame {
     
     public void changePage(int new_page_id) {
         CarList car_list = new CarList(this.user_id, this.curr_company_id, new_page_id);
-        car_list.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(car_list.getContentPane());
+        this.revalidate();
+        this.repaint();
     }
     
     public void viewCar(int car_id) {
         CarDetails car_details = new CarDetails(this.user_id, car_id);
-        car_details.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(car_details.getContentPane());
+        this.revalidate();
+        this.repaint();
     }
     
     public void buyCar(int car_id) {
@@ -947,8 +951,10 @@ public class CarList extends javax.swing.JFrame {
 
     private void back_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back_btnMouseClicked
         CompanyList company_list = new CompanyList(this.user_id);
-        company_list.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(company_list.getContentPane());
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_back_btnMouseClicked
 
     private void prev_page_iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prev_page_iconMouseClicked
@@ -969,26 +975,34 @@ public class CarList extends javax.swing.JFrame {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         Home h = new Home();
-        h.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(h.getContentPane());
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
         Home h = new Home();
-        h.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(h.getContentPane());
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_jPanel5MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         ProfileM prifile_setting = new ProfileM(this.user_id);
-        prifile_setting.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(prifile_setting.getContentPane());
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
         ProfileM prifile_setting = new ProfileM(this.user_id);
-        prifile_setting.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(prifile_setting.getContentPane());
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_jPanel9MouseClicked
 
     /**

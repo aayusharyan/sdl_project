@@ -206,7 +206,7 @@ public class ProfileM extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(user_name, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(2, 2, 2)))
-                        .addGap(0, 5, Short.MAX_VALUE))
+                        .addGap(0, 9, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(logout_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(12, 12, 12)
@@ -373,11 +373,12 @@ public class ProfileM extends javax.swing.JFrame {
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(update_name, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING))))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1)
@@ -425,16 +426,19 @@ public class ProfileM extends javax.swing.JFrame {
 
     private void logout_textfieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logout_textfieldMouseClicked
         Home h = new Home();
-        h.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(h.getContentPane());
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_logout_textfieldMouseClicked
 
     private void logout_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logout_labelMouseClicked
         // TODO add your handling code here:
         Home h = new Home();
-        h.setVisible(true);
-        this.dispose();
-
+        this.getContentPane().removeAll();
+        this.getContentPane().add(h.getContentPane());
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_logout_labelMouseClicked
 
     private void update_nameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_update_nameFocusGained
@@ -486,8 +490,10 @@ public class ProfileM extends javax.swing.JFrame {
 
     private void back_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back_btnMouseClicked
         CompanyList cl = new CompanyList(this.user_id);
-        cl.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(cl.getContentPane());
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_back_btnMouseClicked
 
     private void submitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitMouseClicked

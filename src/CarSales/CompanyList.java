@@ -19,8 +19,10 @@ public class CompanyList extends javax.swing.JFrame {
     
     public void companySelect(int company_id) {
         CarList car_list = new CarList(user_id, company_id, -1);
-        car_list.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(car_list.getContentPane());
+        this.revalidate();
+        this.repaint();
     }
 
     /**
@@ -566,34 +568,44 @@ public class CompanyList extends javax.swing.JFrame {
     private void logout_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logout_labelMouseClicked
         // TODO add your handling code here:
         Home h = new Home();
-        h.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(h.getContentPane());
+        this.revalidate();
+        this.repaint();
         
     }//GEN-LAST:event_logout_labelMouseClicked
 
     private void logout_textfieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logout_textfieldMouseClicked
         // TODO add your handling code here:
         Home h = new Home();
-        h.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(h.getContentPane());
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_logout_textfieldMouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         ProfileM prifile_setting = new ProfileM(this.user_id);
-        prifile_setting.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(prifile_setting.getContentPane());
+        this.getContentPane().revalidate();
+        this.getContentPane().repaint();
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void jPanel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel8MouseClicked
         ProfileM prifile_setting = new ProfileM(this.user_id);
-        prifile_setting.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(prifile_setting.getContentPane());
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_jPanel8MouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         CarList carlist = new CarList(this.user_id, 0, 1);
-        carlist.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(carlist.getContentPane());
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_jLabel1MouseClicked
 
     /**

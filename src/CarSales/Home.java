@@ -39,12 +39,18 @@ public class Home extends javax.swing.JFrame {
             if(login_status[0].equals("true")) {
                 if(login_status[2].equals("admin")) {
                     Admin admin = new Admin(Integer.parseInt(login_status[1]), 1);
-                    admin.setVisible(true);
-                    this.dispose();
+                    this.getContentPane().removeAll(); 
+                    this.getContentPane().add(admin.getContentPane());
+                    this.getContentPane().revalidate();
+                    this.getContentPane().repaint();
+                    
                 } else {
                     CompanyList comp = new CompanyList(Integer.parseInt(login_status[1]));
-                    comp.setVisible(true);
-                    this.dispose();
+                    this.getContentPane().removeAll();
+                    this.getContentPane().add(comp.getContentPane());
+                    this.getContentPane().revalidate();
+                    this.getContentPane().repaint();
+                    
                 }
             } else {
                 invalid_credentials_err_msg.setVisible(true);

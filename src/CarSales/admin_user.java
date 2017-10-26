@@ -17,8 +17,10 @@ public class admin_user extends javax.swing.JFrame {
     
     public void changePage(int new_page_id) {
         admin_user admin_user = new admin_user(this.user_id, new_page_id);
-        admin_user.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(admin_user.getContentPane());
+        this.revalidate();
+        this.repaint();
     }
     /**
      * Creates new form admin_user
@@ -722,15 +724,19 @@ public class admin_user extends javax.swing.JFrame {
     private void logout_textfieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logout_textfieldMouseClicked
         // TODO add your handling code here:
         Home h = new Home();
-        h.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(h.getContentPane());
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_logout_textfieldMouseClicked
 
     private void logout_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logout_labelMouseClicked
         // TODO add your handling code here:
         Home h = new Home();
-        h.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(h.getContentPane());
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_logout_labelMouseClicked
 
     private void prev_page_iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prev_page_iconMouseClicked
@@ -751,8 +757,10 @@ public class admin_user extends javax.swing.JFrame {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         Admin admin = new Admin(this.user_id, 1);
-        admin.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(admin.getContentPane());
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_jLabel1MouseClicked
 
     /**

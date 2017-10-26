@@ -17,8 +17,10 @@ public class Admin extends javax.swing.JFrame {
     
     public void changePage(int new_page_id) {
         Admin admin = new Admin(this.user_id, new_page_id);
-        admin.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(admin.getContentPane());
+        this.revalidate();
+        this.repaint();
     }
     /**
      * Creates new form AddCar
@@ -638,15 +640,19 @@ public class Admin extends javax.swing.JFrame {
     private void logout_textfieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logout_textfieldMouseClicked
         // TODO add your handling code here:
         Home h = new Home();
-        h.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(h.getContentPane());
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_logout_textfieldMouseClicked
 
     private void logout_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logout_labelMouseClicked
         // TODO add your handling code here:
         Home h = new Home();
-        h.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(h.getContentPane());
+        this.revalidate();
+        this.repaint();
 
     }//GEN-LAST:event_logout_labelMouseClicked
 
@@ -668,8 +674,10 @@ public class Admin extends javax.swing.JFrame {
 
     private void Jpanel_userMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Jpanel_userMouseClicked
         admin_user au = new admin_user(this.user_id, 1);
-        au.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(au.getContentPane());
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_Jpanel_userMouseClicked
 
     /**

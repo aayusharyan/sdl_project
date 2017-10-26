@@ -362,20 +362,26 @@ public class CarDetails extends javax.swing.JFrame {
 
     private void back_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back_btnMouseClicked
         CarList car_list = new CarList(this.user_id, this.company_id, -1);
-        car_list.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(car_list.getContentPane());
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_back_btnMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         Home h = new Home();
-        h.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(h.getContentPane());
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
         Home h = new Home();
-        h.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(h.getContentPane());
+        this.getContentPane().revalidate();
+        this.getContentPane().repaint();
     }//GEN-LAST:event_jPanel5MouseClicked
 
     private void car_buy_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_car_buy_labelMouseClicked
@@ -388,14 +394,18 @@ public class CarDetails extends javax.swing.JFrame {
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         ProfileM prifile_setting = new ProfileM(this.user_id);
-        prifile_setting.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(prifile_setting.getContentPane());
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void jPanel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel9MouseClicked
         ProfileM prifile_setting = new ProfileM(this.user_id);
-        prifile_setting.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(prifile_setting.getContentPane());
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_jPanel9MouseClicked
 
     /**
