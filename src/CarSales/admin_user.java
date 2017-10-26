@@ -193,7 +193,7 @@ public class admin_user extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(94, 237, 181));
-        jLabel3.setText("User");
+        jLabel3.setText("Users");
 
         logout_label.setBackground(new java.awt.Color(38, 40, 55));
         logout_label.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(242, 109, 125), 1, true));
