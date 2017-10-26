@@ -6,6 +6,8 @@
 package CarSales;
 
 import com.google.gson.Gson;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -18,6 +20,14 @@ public class Receipt extends javax.swing.JFrame {
      * @param user_id
      * @param car_id
      */
+    public String calendar()
+    {
+        Calendar cal=new GregorianCalendar();
+        String day=String.valueOf(cal.get(Calendar.DATE));
+        String month=String.valueOf(cal.get(Calendar.MONTH)+1);
+        String year=String.valueOf(cal.get(Calendar.YEAR));
+        return (day+"/"+month+"/"+year);
+     }
     public Receipt(int user_id, int car_id) {
         this.user_id = user_id;
         initComponents();
@@ -48,7 +58,8 @@ public class Receipt extends javax.swing.JFrame {
                 car_price.setText("Price: "+car_details[5]);
                 price_total.setText("Total: "+total_price);
                 invoice_id.setText("Invoice ID: "+receipt_no);
-
+                date.setText("Date: "+calendar());
+                
                 user_name.setVisible(true);
                 product_car_id.setVisible(true);
                 car_name.setVisible(true);
@@ -184,6 +195,7 @@ public class Receipt extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Home");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
@@ -348,7 +360,6 @@ public class Receipt extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -357,7 +368,6 @@ public class Receipt extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPanel loader_panel;
-    private javax.swing.JPanel loaderpanel;
     private javax.swing.JLabel price_total;
     private javax.swing.JLabel product_car_id;
     private javax.swing.JLabel tax_gst;
