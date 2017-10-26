@@ -76,8 +76,10 @@ public class Home extends javax.swing.JFrame {
             int register_status = connection.register(json_user_data);
             if(register_status > 0) {
                 CompanyList comp=new CompanyList(register_status);
-                comp.setVisible(true);
-                this.dispose();
+                this.getContentPane().removeAll();
+                this.getContentPane().add(comp.getContentPane());
+                this.getContentPane().revalidate();
+                this.getContentPane().repaint();
             } else {
                 invalid_register_err_msg.setVisible(true);
             }

@@ -37,8 +37,10 @@ public class CarList extends javax.swing.JFrame {
     
     public void buyCar(int car_id) {
         Receipt transaction = new Receipt(this.user_id, car_id);
-        transaction.setVisible(true);
-        this.dispose();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(transaction.getContentPane());
+        this.getContentPane().revalidate();
+        this.getContentPane().repaint();
     }
 
     /**

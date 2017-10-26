@@ -18,7 +18,7 @@ public class CompanyList extends javax.swing.JFrame {
     private int user_id;
     
     public void companySelect(int company_id) {
-        CarList car_list = new CarList(user_id, company_id, -1);
+        CarList car_list = new CarList(user_id, company_id, 1);
         this.getContentPane().removeAll();
         this.getContentPane().add(car_list.getContentPane());
         this.getContentPane().revalidate();
