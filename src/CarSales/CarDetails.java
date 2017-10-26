@@ -92,6 +92,7 @@ public class CarDetails extends javax.swing.JFrame {
         });
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/account.png"))); // NOI18N
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel7MouseClicked(evt);
@@ -114,6 +115,7 @@ public class CarDetails extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(38, 40, 55));
         jPanel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(242, 109, 125), 1, true));
+        jPanel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel5MouseClicked(evt);
@@ -164,6 +166,7 @@ public class CarDetails extends javax.swing.JFrame {
         back_btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         back_btn.setForeground(new java.awt.Color(255, 255, 255));
         back_btn.setText("⬅ Back");
+        back_btn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         back_btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 back_btnMouseClicked(evt);
@@ -250,6 +253,7 @@ public class CarDetails extends javax.swing.JFrame {
 
         car_buy_panel.setBackground(new java.awt.Color(58, 56, 77));
         car_buy_panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(94, 237, 181)));
+        car_buy_panel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         car_buy_panel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 car_buy_panelMouseClicked(evt);
