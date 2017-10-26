@@ -12,13 +12,31 @@ import com.google.gson.Gson;
  * @author aksha
  */
 public class admin_user extends javax.swing.JFrame {
-
+    private int page_id;
+    private int user_id;
+    
+    public void changePage(int new_page_id) {
+        Admin admin = new Admin(this.user_id, new_page_id);
+        admin.setVisible(true);
+        this.dispose();
+    }
     /**
      * Creates new form admin_user
      */
     public admin_user(int user_id, int page_id) {
+        this.user_id = user_id;
+        this.page_id = page_id;
         initComponents();
-            
+        user_1_panel.setVisible(false);
+        user_2_panel.setVisible(false);
+        user_3_panel.setVisible(false);
+        user_4_panel.setVisible(false);
+        user_5_panel.setVisible(false);
+        user_6_panel.setVisible(false);
+        prev_page_panel.setVisible(false);
+        next_page_panel.setVisible(false);
+        
+        new Thread(() -> {    
             int limit = 6;
             int offset = 0;
             if(page_id > 1) {
@@ -47,6 +65,17 @@ public class admin_user extends javax.swing.JFrame {
                     }
                 }
             }
+            
+            if(offset > 0) {
+                prev_page_panel.setVisible(true);
+            }
+            
+            connection = new SQLdb();
+            int remaining_items = connection.remainingUsers(offset, limit);
+            if(remaining_items > 0) {
+                next_page_panel.setVisible(true);
+            }
+        }).start();
     }
 
     /**
@@ -96,10 +125,10 @@ public class admin_user extends javax.swing.JFrame {
         user_6_email = new javax.swing.JLabel();
         user_6_phone = new javax.swing.JLabel();
         jPanel22 = new javax.swing.JPanel();
-        prev_page_panel1 = new javax.swing.JPanel();
-        prev_page_icon1 = new javax.swing.JLabel();
-        next_page_panel1 = new javax.swing.JPanel();
-        next_page_icon1 = new javax.swing.JLabel();
+        prev_page_panel = new javax.swing.JPanel();
+        prev_page_icon = new javax.swing.JLabel();
+        next_page_panel = new javax.swing.JPanel();
+        next_page_icon = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -453,62 +482,62 @@ public class admin_user extends javax.swing.JFrame {
         jPanel22.setBackground(new java.awt.Color(58, 56, 77));
         jPanel22.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(94, 237, 181), 1, true));
 
-        prev_page_panel1.setBackground(new java.awt.Color(58, 56, 77));
-        prev_page_panel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        prev_page_panel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        prev_page_panel.setBackground(new java.awt.Color(58, 56, 77));
+        prev_page_panel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        prev_page_panel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                prev_page_panel1MouseClicked(evt);
+                prev_page_panelMouseClicked(evt);
             }
         });
 
-        prev_page_icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/left-chevron.png"))); // NOI18N
-        prev_page_icon1.addMouseListener(new java.awt.event.MouseAdapter() {
+        prev_page_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/left-chevron.png"))); // NOI18N
+        prev_page_icon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                prev_page_icon1MouseClicked(evt);
+                prev_page_iconMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout prev_page_panel1Layout = new javax.swing.GroupLayout(prev_page_panel1);
-        prev_page_panel1.setLayout(prev_page_panel1Layout);
-        prev_page_panel1Layout.setHorizontalGroup(
-            prev_page_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(prev_page_panel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout prev_page_panelLayout = new javax.swing.GroupLayout(prev_page_panel);
+        prev_page_panel.setLayout(prev_page_panelLayout);
+        prev_page_panelLayout.setHorizontalGroup(
+            prev_page_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(prev_page_panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(prev_page_icon1)
+                .addComponent(prev_page_icon)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        prev_page_panel1Layout.setVerticalGroup(
-            prev_page_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(prev_page_icon1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        prev_page_panelLayout.setVerticalGroup(
+            prev_page_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(prev_page_icon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        next_page_panel1.setBackground(new java.awt.Color(58, 56, 77));
-        next_page_panel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        next_page_panel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        next_page_panel.setBackground(new java.awt.Color(58, 56, 77));
+        next_page_panel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        next_page_panel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                next_page_panel1MouseClicked(evt);
+                next_page_panelMouseClicked(evt);
             }
         });
 
-        next_page_icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/right-chevron.png"))); // NOI18N
-        next_page_icon1.addMouseListener(new java.awt.event.MouseAdapter() {
+        next_page_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CarSales/assets/icons/right-chevron.png"))); // NOI18N
+        next_page_icon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                next_page_icon1MouseClicked(evt);
+                next_page_iconMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout next_page_panel1Layout = new javax.swing.GroupLayout(next_page_panel1);
-        next_page_panel1.setLayout(next_page_panel1Layout);
-        next_page_panel1Layout.setHorizontalGroup(
-            next_page_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, next_page_panel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout next_page_panelLayout = new javax.swing.GroupLayout(next_page_panel);
+        next_page_panel.setLayout(next_page_panelLayout);
+        next_page_panelLayout.setHorizontalGroup(
+            next_page_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, next_page_panelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(next_page_icon1)
+                .addComponent(next_page_icon)
                 .addContainerGap())
         );
-        next_page_panel1Layout.setVerticalGroup(
-            next_page_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(next_page_icon1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+        next_page_panelLayout.setVerticalGroup(
+            next_page_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(next_page_icon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
@@ -517,9 +546,9 @@ public class admin_user extends javax.swing.JFrame {
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(prev_page_panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(prev_page_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(next_page_panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(next_page_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel22Layout.setVerticalGroup(
@@ -527,8 +556,8 @@ public class admin_user extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(next_page_panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(prev_page_panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(next_page_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(prev_page_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -613,21 +642,21 @@ public class admin_user extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_logout_labelMouseClicked
 
-    private void prev_page_icon1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prev_page_icon1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prev_page_icon1MouseClicked
+    private void prev_page_iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prev_page_iconMouseClicked
+        changePage(this.page_id-1);
+    }//GEN-LAST:event_prev_page_iconMouseClicked
 
-    private void prev_page_panel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prev_page_panel1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prev_page_panel1MouseClicked
+    private void prev_page_panelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prev_page_panelMouseClicked
+        changePage(this.page_id-1);
+    }//GEN-LAST:event_prev_page_panelMouseClicked
 
-    private void next_page_icon1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_next_page_icon1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_next_page_icon1MouseClicked
+    private void next_page_iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_next_page_iconMouseClicked
+        changePage(this.page_id+1);
+    }//GEN-LAST:event_next_page_iconMouseClicked
 
-    private void next_page_panel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_next_page_panel1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_next_page_panel1MouseClicked
+    private void next_page_panelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_next_page_panelMouseClicked
+        changePage(this.page_id+1);
+    }//GEN-LAST:event_next_page_panelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -673,10 +702,10 @@ public class admin_user extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel logout_label;
     private javax.swing.JLabel logout_textfield;
-    private javax.swing.JLabel next_page_icon1;
-    private javax.swing.JPanel next_page_panel1;
-    private javax.swing.JLabel prev_page_icon1;
-    private javax.swing.JPanel prev_page_panel1;
+    private javax.swing.JLabel next_page_icon;
+    private javax.swing.JPanel next_page_panel;
+    private javax.swing.JLabel prev_page_icon;
+    private javax.swing.JPanel prev_page_panel;
     private javax.swing.JLabel user_1_email;
     private javax.swing.JLabel user_1_icon;
     private javax.swing.JLabel user_1_name;
