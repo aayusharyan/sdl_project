@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 
 /**
  *
@@ -240,6 +239,64 @@ public class SQLdb {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;   
+    }
+    
+    public String getUsers(int offset, int limit) {
+        String return_str = "";
+        String rtrn[][] = new String[limit][4];
+        try {
+            // TODO add your handling code here:
+            Statement st;
+            st = con.createStatement();
+            int count = 0;
+            String offset_statement = "";
+            if(offset > 0) {
+                offset_statement = " OFFSET "+offset+" ";
+            }
+            ResultSet re = st.executeQuery("SELECT * FROM carsales LIMIT "+limit+offset_statement);
+            while(re.next()){
+                rtrn[count][0] = re.getString("Id");
+                rtrn[count][1] = re.getString("Name");
+                rtrn[count][2] = re.getString("Email");
+                rtrn[count][3] = re.getString("Phone");
+                count++;
+            }
+            Gson gson = new Gson();
+            return_str = gson.toJson(rtrn);
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return return_str;
+    }
+    
+    public String getPurchases(int offset, int limit) {
+        String return_str = "";
+        String rtrn[][] = new String[limit][3];
+        try {
+            // TODO add your handling code here:
+            Statement st;
+            st = con.createStatement();
+            int count = 0;
+            String offset_statement = "";
+            String whereSTR = "";
+            if(offset > 0) {
+                offset_statement = " OFFSET "+offset+" ";
+            }
+            ResultSet re = st.executeQuery("SELECT * FROM transactions LIMIT "+limit+offset_statement);
+            while(re.next()){
+                rtrn[count][0] = re.getString("id");
+                rtrn[count][1] = re.getString("user_id");
+                rtrn[count][2] = re.getString("product_id");
+                count++;
+            }
+            Gson gson = new Gson();
+            return_str = gson.toJson(rtrn);
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return return_str;
     }
     
 }
